@@ -8,16 +8,19 @@ ul {
 
 li {
   a {
-    height: 22.5rem;
+    height: 23rem;
     width: 20rem;
     border: 1px solid whitesmoke;
+    border-radius: 1rem;
     margin: .5rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     overflow: hidden;
     color: #e72929;
 
     &:hover {
+      transition: all .2s ease-in-out;
       cursor: pointer;
       opacity: .9;
     }
@@ -30,64 +33,63 @@ li {
 }
 
 .content {
-  margin-top: .3rem;
-  padding: .5rem 1rem;
-  position: relative;
-  height: 7rem;
-}
+  padding: 0 1rem .5rem 1rem;
+  height: fit-content;
 
-.heart-icon {
-  position: absolute;
-  top: .5rem;
-  right: 1rem;
-  font-size: 1.2rem;
-  color: grey;
-}
-
-.name {
-  font-weight: 600;
-}
-
-.heart-icon.favorite {
-  color: #e72929;
-}
-
-.stars {
-  margin: .5rem 0;
-}
-
-.product-items-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.origins {
-  flex: 9;
-
-  span {
-    border-radius: 2rem;
-    color: grey;
-    background-color: whitesmoke;
-    display: inline-block;
-    font-size: .8rem;
-    margin-right: .3rem;
-    padding: 0 .5rem;
-    margin-top: .2rem;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-}
 
-.cooking-time {
-  flex: 3;
-  font-size: .9rem;
-  font-weight: 600;
-  text-align: right;
-}
+  &__food-name {
+    font-weight: 600;
+  }
 
-.price {
-  position: absolute;
-  background-color: white;
-  color: #414141;
-  margin-top: .7rem;
-  font-size: 1.1rem;
+  &__heart-icon {
+    font-size: 1.2rem;
+    color: grey;
+
+    &--favorite {
+      color: #e72929;
+    }
+  }
+
+  &__stars {
+    margin: .5rem 0;
+  }
+
+  &__origin-and-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__origins {
+    flex: 9;
+
+    span {
+      border-radius: 2rem;
+      color: grey;
+      background-color: whitesmoke;
+      display: inline-block;
+      font-size: .8rem;
+      margin-right: .3rem;
+      padding: 0 .5rem;
+      margin-top: .2rem;
+    }
+  }
+
+  &__cooking-time {
+    flex: 3;
+    text-align: end;
+    font-size: .9rem;
+    font-weight: 600;
+  }
+
+  &__price {
+    color: #414141;
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
 }
