@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+@import "../node_modules/css-star-rating/css/star-rating.css";
 
 * {
   box-sizing: border-box;
@@ -14,6 +15,10 @@ html, button {
 
 body {
   margin: 0;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
