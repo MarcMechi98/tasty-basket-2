@@ -2,7 +2,7 @@
   <li *ngFor="let food of foods">
     <a routerLink="/food/{{ food.id }}">
       <img [src]="food.imageUrl" [alt]="food.name" />
-      <div class="content">
+      <section class="content">
         <div class="content__header">
           <p class="content__food-name">
             {{ food.name }}
@@ -34,7 +34,7 @@
         <p class="content__price">
           {{ food.price | currency }}
         </p>
-      </div>
+      </section>
     </a>
   </li>
 </ul>

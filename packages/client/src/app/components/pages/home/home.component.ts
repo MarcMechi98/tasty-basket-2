@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Food } from 'src/app/shared/models/food';
 import { FoodService } from 'src/app/services/food.service';
@@ -13,9 +14,16 @@ export class HomeComponent implements OnInit {
   foods: Food[] = [];
 
   constructor(
-    private foodService: FoodService
+    private foodService: FoodService,
+    private route: ActivatedRoute,
   ) {
-    this.foods = this.foodService.getAll();
+    this.route.params.subscribe(params => {
+      if (params['searchTerm']) {
+        this.foods = this.foodService.getFoodsByName(params['searchTerm']);
+      } else {
+        this.foods = this.foodService.getAll();
+      }
+    });
   }
 
   ngOnInit(): void {
