@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private foodService: FoodService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
   ) {
-    this.route.params.subscribe(params => {
+    this.activatedRoute.params.subscribe(params => {
       if (params['searchTerm']) {
         this.foods = this.foodService.getFoodsByName(params['searchTerm']);
       } else {

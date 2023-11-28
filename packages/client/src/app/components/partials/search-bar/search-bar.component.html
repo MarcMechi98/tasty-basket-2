@@ -1,0 +1,10 @@
+<div class="search-bar">
+  <input
+    #searchInput
+    type="text"
+    placeholder="Search Tasty Basket"
+    (keyup.enter)="searchFood(searchInput.value)"
+    [value]="searchTerm"
+  >
+  <button (click)="searchFood(searchInput.value)">Search</button>
+</div>
