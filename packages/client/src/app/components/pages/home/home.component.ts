@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Food } from 'src/app/shared/models/food';
+import { Tag } from 'src/app/shared/models/tags';
 import { FoodService } from 'src/app/services/food.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { FoodService } from 'src/app/services/food.service';
 export class HomeComponent implements OnInit {
 
   foods: Food[] = [];
+  tags: Tag[] = [];
 
   constructor(
     private foodService: FoodService,
@@ -21,7 +23,11 @@ export class HomeComponent implements OnInit {
       if (params['searchTerm']) {
         this.foods = this.foodService.getFoodsByName(params['searchTerm']);
       } else {
-        this.foods = this.foodService.getAll();
+        this.foods = this.foodService.getAllFoods();
+      }
+
+      if (params['tag']) {
+        this.foods = this.foodService.getFoodsByTag(params['tag']);
       }
     });
   }
