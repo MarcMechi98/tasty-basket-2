@@ -57,13 +57,6 @@ export class CartService {
     return this.cartSubject.asObservable();
   }
 
-  updateCart(): void {
-    this.cart.totalPrice = this.cart.items.reduce((total, item) => total + item.price, 0);
-    this.cart.totalCount = this.cart.items.reduce((total, item) => total + item.quantity, 0);
-
-    this.cartSubject.next(this.cart);
-  }
-
   private setCartToLocalStorage(): void {
     this.cart.totalPrice = this.cart.items.reduce((total, item) => total + item.price, 0);
     this.cart.totalCount = this.cart.items.reduce((total, item) => total + item.quantity, 0);
