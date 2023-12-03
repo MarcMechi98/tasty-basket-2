@@ -25,14 +25,14 @@ export class CartService {
     this.setCartToLocalStorage();
   }
 
-  removeFoodFromCart(food: Food): void {
-    let cartItem = this.cart.items.find(item => item.food.id === food.id);
+  removeFoodFromCart(foodId: string): void {
+    let cartItem = this.cart.items.find(item => item.food.id === foodId);
 
     if (!cartItem) {
       return;
     }
 
-    this.cart.items = this.cart.items.filter(item => item.food.id !== food.id);
+    this.cart.items = this.cart.items.filter(item => item.food.id !== foodId);
     this.setCartToLocalStorage();
   }
 
