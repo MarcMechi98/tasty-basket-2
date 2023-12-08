@@ -2,6 +2,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/partials/header/header.component';
@@ -30,7 +31,8 @@ import { NotFoundComponent } from './components/partials/not-found/not-found.com
     BrowserModule,
     RouterModule.forRoot([]),
     StarRatingModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
