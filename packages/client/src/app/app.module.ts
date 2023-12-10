@@ -1,4 +1,3 @@
-import { StarRatingModule } from 'angular-star-rating';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -16,6 +15,8 @@ import { CartPageComponent } from './components/pages/cart-page/cart-page.compon
 import { TitleComponent } from './components/partials/title/title.component';
 import { NotFoundComponent } from './components/partials/not-found/not-found.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { CommonModule } from '@angular/common';
+import { StarRatingComponent } from './components/partials/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,13 @@ import { LoginComponent } from './components/pages/login/login.component';
     CartPageComponent,
     TitleComponent,
     NotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     RouterModule.forRoot([]),
-    StarRatingModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule

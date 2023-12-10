@@ -14,13 +14,7 @@
     </header>
 
     <div class="rating">
-      <star-rating
-        [rating]="food.stars"
-        [step]="0.5"
-        [showHalfStars]="true"
-        [readOnly]="true"
-        staticColor="negative"
-      ></star-rating>
+      <app-star-rating [stars]="food.stars" [size]="1.8"></app-star-rating>
     </div>
 
     <div class="origins">
