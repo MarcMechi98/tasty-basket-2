@@ -1,4 +1,4 @@
-import { connect, ConnectOptions } from 'mongoose';
+import { connect } from 'mongoose';
 
 export const dbConnect = async () => {
   connect(process.env.MONGO_URI as string).then(

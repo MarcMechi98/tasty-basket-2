@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-dotenv.config();
-process.env.MONGO_URI
+require('dotenv').config();
 
 import foodRouter from './routers/food.router';
 import userRouter from './routers/user.router';
