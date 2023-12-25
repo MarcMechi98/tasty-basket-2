@@ -10,7 +10,7 @@ export class TextInputComponent {
 
   @Input() label!: string;
   @Input() control!: AbstractControl;
-  @Input() placeholder: string = this.label;
+  @Input() placeholder!: string;
   @Input() shouldDisplayErrors: boolean = true;
   @Input() type: 'text' | 'password' | 'email' = 'text';
 

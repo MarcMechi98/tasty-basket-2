@@ -3,7 +3,10 @@ import { AbstractControl } from '@angular/forms';
 
 const VALIDATION_ERROR_MESSAGES: any = {
   required: 'Should not be empty',
-  email: 'Email is not valid'
+  email: 'Email is not valid',
+  minlength: 'Should be at least 8 characters',
+  maxlength: 'Should be less than 20 characters',
+  passwordsDontMatch: 'Passwords do not match'
 }
 
 @Component({
@@ -34,6 +37,7 @@ export class InputValidationComponent implements OnInit, OnChanges{
 
   checkValidation(): void {
     const errors = this.control.errors;
+
     if (!errors) {
       this.errorMessages = [];
       return;

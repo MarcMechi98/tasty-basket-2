@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { User } from '../shared/models/user';
+import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
-import { USER_LOGIN_URL } from '../shared/constants/urls';
-import { ToastrService } from 'ngx-toastr';
+import { UserRegistrationInput } from '../shared/interfaces/UserRegistration';
 
 const USER_KEY = 'User';
 
@@ -39,6 +40,26 @@ export class UserService {
         error: (err) => {
           console.error(err);
           this.toastr.error(err.error.message, 'Login Failed');
+        }
+      })
+    )
+  }
+
+  register(userInput: UserRegistrationInput): Observable<User> {
+    return this.http.post<User>(USER_REGISTER_URL, userInput).pipe(
+      tap({
+        next: (user: User) => {
+          this.setUserToLocalstorage(user);
+
+          this.userSubject.next(user);
+          this.toastr.success(
+            `Welcome to Tasty Basket, ${user.name}!\n
+            Registration successful.`
+          );
+        },
+        error: (err) => {
+          console.error(err);
+          this.toastr.error(err.error.message, 'Registration Failed');
         }
       })
     )

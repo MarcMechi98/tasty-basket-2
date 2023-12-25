@@ -1,7 +1,7 @@
 export const sample_foods: any[] = [
   {
     id: '1',
-    name: 'Pizza Pepperoni',
+    name: 'Pepperoni Pizza',
     cookingTime: '10-20',
     price: 10,
     favorite: false,
@@ -12,7 +12,7 @@ export const sample_foods: any[] = [
   },
   {
     id: '2',
-    name: 'Meatball',
+    name: 'Meatballs',
     price: 20,
     cookingTime: '20-30',
     favorite: true,
@@ -34,7 +34,7 @@ export const sample_foods: any[] = [
   },
   {
     id: '4',
-    name: 'Fried Potatoes',
+    name: 'French Fries',
     price: 2,
     cookingTime: '15-20',
     favorite: true,
@@ -56,7 +56,7 @@ export const sample_foods: any[] = [
   },
   {
     id: '6',
-    name: 'Vegetables Pizza',
+    name: 'Veggie Pizza',
     price: 9,
     cookingTime: '40-50',
     favorite: false,

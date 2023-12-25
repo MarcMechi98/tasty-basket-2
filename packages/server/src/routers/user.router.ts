@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
+import bcrypt from 'bcryptjs';
 
 import { sample_users } from '../data';
-import { UserModel } from '../models/user.model';
+import { User, UserModel } from '../models/user.model';
 
 const router = Router();
 const jwtSecret = process.env.JWT_SECRET;
@@ -32,6 +33,35 @@ router.post('/login', asyncHandler(async (req, res) => {
     }
   } catch (error) {
     console.error('Error during login:', error);
+    res.status(500).send('Internal server error');
+  }
+}));
+
+router.post('/register', asyncHandler(async (req, res) => {
+  const { email, password, name, address } = req.body;
+
+  const user = await UserModel.findOne({ email });
+  if (user) {
+    res.status(400).send('User already exists');
+    return;
+  }
+
+  const encryptedPassword = await bcrypt.hash(password, 10);
+
+  const newUser: User = {
+    id: '',
+    name,
+    email: email.toLowerCase(),
+    password: encryptedPassword,
+    address,
+    isAdmin: false
+  }
+
+  try {
+    const dbUser = await UserModel.create(newUser);
+    res.send(generateTokenResponse(dbUser));
+  } catch (error) {
+    console.error('Error during registration:', error);
     res.status(500).send('Internal server error');
   }
 }));
