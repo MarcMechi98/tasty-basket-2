@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+  border: 1px solid #eee;
+  margin-top: 1rem;
+  border-radius: 5px;
+  padding: .5rem 1rem;
+}
+
+h3 {
+  margin-top: .5rem;
+  margin-left: .3rem;
+  color: gray;
+}
+
+a:hover {
+  cursor: pointer;
+  opacity: .9;
+}
+
+td {
+  height: 3rem;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 100rem;
+  }
+}
