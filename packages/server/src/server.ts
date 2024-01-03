@@ -21,8 +21,8 @@ app.use(cors({
 }));
 
 app.use("/api/foods", foodRouter);
-app.use("/api/users", userRouter)
-app.use("/api/orders", orderRouter)
+app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 app.listen(PORT, () => {
   console.log('Website server running on http://localhost:' + PORT + '!');

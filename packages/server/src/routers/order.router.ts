@@ -30,4 +30,17 @@ router.post('/create', asyncHandler(async (req: any, res: any) => {
   res.status(201).send(newOrder);
 }));
 
+router.get('/newOrderForCurrentUser', asyncHandler(async (req: any, res: any) => {
+  const order = await OrderModel.findOne({
+    user: req.user.id, 
+    status: OrderStatus.NEW
+  });
+
+  if (order) {
+    res.send(order);
+  } else {
+    res.status(404).send({ message: 'Order not found' });
+  }
+}));
+
 export default router;

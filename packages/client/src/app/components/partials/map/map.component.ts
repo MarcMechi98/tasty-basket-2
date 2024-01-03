@@ -1,5 +1,5 @@
 import { LocationService } from './../../../services/location.service';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, ViewChild } from '@angular/core';
 import { LatLng, LatLngExpression, LatLngTuple, LeafletMouseEvent, Map, Marker, icon, map, marker, tileLayer } from 'leaflet';
 
 import { Order } from 'src/app/shared/models/order';
@@ -9,10 +9,11 @@ import { Order } from 'src/app/shared/models/order';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent {
+export class MapComponent implements OnChanges {
 
   @ViewChild('map', { static: true }) mapRef!: ElementRef;
   @Input() order!: Order;
+  @Input() readonly: Boolean = false;
 
   private readonly DEFAULT_LAT_LNG: LatLngTuple = [13.75, 21.62];
   private readonly MARKER_ZOOM_LVL = 16;
@@ -30,8 +31,18 @@ export class MapComponent {
     private locationService: LocationService,
   ) { }
 
-  ngOnInit(): void {
+  get addressLatLng(): LatLng {
+    return this.order.addressLatLng!;
+  }
+
+  ngOnChanges(): void {
+    if (!this.order) return;
+
     this.initializeMap();
+
+    if (this.readonly && this.addressLatLng) {
+      this.showLocationOnReadonlyMode();
+    }
   }
 
   private initializeMap(): void {
@@ -76,7 +87,24 @@ export class MapComponent {
     });
   }
 
+  private showLocationOnReadonlyMode() {
+    const map = this.map;
+    this.setMarker(this.addressLatLng);
+    map.setView(this.addressLatLng, this.MARKER_ZOOM_LVL);
+
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+    map.off('click');
+    this.currentMarker.dragging!.disable();
+  }
+
   set addressLatLng(latlng: LatLng) {
+    if (!latlng.lat.toFixed) return;
+
     latlng.lat = parseFloat(latlng.lat.toFixed(8));
     latlng.lng = parseFloat(latlng.lng.toFixed(8));
     this.order.addressLatLng = latlng;
