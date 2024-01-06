@@ -31,6 +31,7 @@ import { OrderItemsListComponent } from './components/partials/order-items-list/
 import { MapComponent } from './components/partials/map/map.component';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { PaymentPageComponent } from './components/pages/payment-page/payment-page.component';
+import { PaypalButtonComponent } from './components/partials/paypal-button/paypal-button.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
     CheckoutPageComponent,
     OrderItemsListComponent,
     MapComponent,
-    PaymentPageComponent
+    PaymentPageComponent,
+    PaypalButtonComponent
   ],
   imports: [
     BrowserModule,

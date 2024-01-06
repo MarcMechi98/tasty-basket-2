@@ -17,7 +17,7 @@ router.post('/create', asyncHandler(async (req: any, res: any) => {
   }
 
   await OrderModel.deleteOne({
-    user: req.user._id,
+    user: req.user.id,
     status: OrderStatus.NEW,
   });
 
@@ -31,10 +31,7 @@ router.post('/create', asyncHandler(async (req: any, res: any) => {
 }));
 
 router.get('/newOrderForCurrentUser', asyncHandler(async (req: any, res: any) => {
-  const order = await OrderModel.findOne({
-    user: req.user.id, 
-    status: OrderStatus.NEW
-  });
+  const order = await getNewOrderForCurrentUser(req)
 
   if (order) {
     res.send(order);
@@ -42,5 +39,28 @@ router.get('/newOrderForCurrentUser', asyncHandler(async (req: any, res: any) =>
     res.status(404).send({ message: 'Order not found' });
   }
 }));
+
+router.post('/pay', asyncHandler(async (req: any, res: any) => {
+  const { paymentId } = req.body; 
+  const order = await getNewOrderForCurrentUser(req);
+
+  if (!order) {
+    res.status(404).send({ message: 'Order not found' });
+    return;
+  }
+
+  order.paymentId = paymentId;
+  order.status = OrderStatus.PAID;
+  await order.save();
+
+  res.send(order._id);
+}));
+
+async function getNewOrderForCurrentUser(req: any) {
+  return await OrderModel.findOne({
+    user: req.user.id, 
+    status: OrderStatus.NEW
+  });
+} 
 
 export default router;
