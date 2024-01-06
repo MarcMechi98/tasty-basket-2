@@ -1,0 +1,27 @@
+.container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 35rem;
+}
+
+.details {
+  margin-bottom: 1rem;
+}
+
+.details > div {
+  margin: 1rem;
+  font-size: 1.1rem;
+}
+
+div strong {
+  display: inline-block;
+  width: 20%;
+}
