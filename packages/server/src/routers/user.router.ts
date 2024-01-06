@@ -20,51 +20,45 @@ router.get('/seed', asyncHandler(async (req, res) => {
   res.send('Database seeded');
 }));
 
-router.post('/login', asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+router.post("/login", asyncHandler(
+  async (req, res) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({email});
   
-  try {
-    const user = await UserModel.findOne({ email, password });
-
-    if (user) {
+     if(user && (await bcrypt.compare(password,user.password))) {
       res.send(generateTokenResponse(user));
-    } else {
+     }
+     else{
       res.status(401).send('Invalid email or password');
+     }
+  
+  }
+))
+  
+router.post('/register', asyncHandler(
+  async (req, res) => {
+    const { name, email, password, address } = req.body;
+    const user = await UserModel.findOne({email});
+    if(user) {
+      res.status(401).send('User already exists, please login!');
+      return;
     }
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).send('Internal server error');
-  }
-}));
 
-router.post('/register', asyncHandler(async (req, res) => {
-  const { email, password, name, address } = req.body;
+    const encryptedPassword = await bcrypt.hash(password, 10);
 
-  const user = await UserModel.findOne({ email });
-  if (user) {
-    res.status(400).send('User already exists');
-    return;
-  }
+    const newUser:User = {
+      id:'',
+      name,
+      email: email.toLowerCase(),
+      password: encryptedPassword,
+      address,
+      isAdmin: false
+    }
 
-  const encryptedPassword = await bcrypt.hash(password, 10);
-
-  const newUser: User = {
-    id: '',
-    name,
-    email: email.toLowerCase(),
-    password: encryptedPassword,
-    address,
-    isAdmin: false
-  }
-
-  try {
     const dbUser = await UserModel.create(newUser);
     res.send(generateTokenResponse(dbUser));
-  } catch (error) {
-    console.error('Error during registration:', error);
-    res.status(500).send('Internal server error');
   }
-}));
+))
 
 const generateTokenResponse = (user: any) => {
   const token = jwt.sign({
