@@ -1,0 +1,25 @@
+{
+  "name": "tasty-basket-2",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18 <19"
+  },
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd packages/client && npm start & cd packages/server && npm start",
+    "start": "cd packages/server/built && node server.js",
+    "prebuild": "cd packages/server && npm run build",
+    "build": "cd packages/client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcMechi98/tasty-basket-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcMechi98/tasty-basket-2/issues"
+  },
+  "homepage": "https://github.com/MarcMechi98/tasty-basket-2#readme"
+}
