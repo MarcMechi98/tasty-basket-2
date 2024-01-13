@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -63,7 +62,6 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
   imports: [
     BrowserModule,
     CommonModule,
-    RouterModule.forRoot([]),
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

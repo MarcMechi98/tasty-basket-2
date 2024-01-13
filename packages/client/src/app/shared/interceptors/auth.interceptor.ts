@@ -20,7 +20,6 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('oi')
     const user = this.userService.currentUser;
     if (user.token) {
       req = req.clone({

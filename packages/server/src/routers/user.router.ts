@@ -19,35 +19,25 @@ router.get('/seed', asyncHandler(async (req, res) => {
   await UserModel.create(sample_users);
   res.send('Database seeded');
 }));
-// ... Your UserModel definition ...
 
-// Your existing code with the password check
 router.post("/login", asyncHandler(
   async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
-
-    if (user) {
-      // Use bcrypt.compare to check the password
-      bcrypt.compare(password, user.password, (err: any, isPasswordValid: any) => {
-        if (isPasswordValid) {
-          res.send(generateTokenResponse(user));
-        } else {
-          res.status(401).send('Invalid email or password');
-        }
-      });
-    } else {
-      res.status(401).send('Invalid email or password');
-    }
-  }
-));
-
-
   
+     if(user && (await bcrypt.compare(password,user.password))) {
+      res.send(generateTokenResponse(user));
+     }
+     else{
+       res.status(401).send("Invalid email or password");
+     }
+  }
+))
+
 router.post('/register', asyncHandler(
   async (req, res) => {
     const { name, email, password, address } = req.body;
-    const user = await UserModel.findOne({email});
+    const user = await UserModel.findOne({ email });
     if(user) {
       res.status(401).send('User already exists, please login!');
       return;
@@ -69,7 +59,7 @@ router.post('/register', asyncHandler(
   }
 ))
 
-const generateTokenResponse = (user: any) => {
+const generateTokenResponse = (user : User) => {
   const token = jwt.sign({
     id: user.id,
     email: user.email,
@@ -84,7 +74,7 @@ const generateTokenResponse = (user: any) => {
     isAdmin: user.isAdmin,
     token: token
   };
-};
+}
 
 
 export default router;

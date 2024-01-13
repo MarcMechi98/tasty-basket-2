@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { PasswordMatchValidator } from 'src/app/shared/validators/password_match_validator';
 import { UserRegistrationInput } from 'src/app/shared/interfaces/UserRegistration';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-register-page',
@@ -56,7 +57,7 @@ export class RegisterPageComponent implements OnInit{
     }
 
     try {
-      await this.userService.register(user).toPromise();
+      await firstValueFrom(this.userService.register(user));
       this.router.navigateByUrl(this.returnUrl);
     } catch (error) {
       console.error(error);
