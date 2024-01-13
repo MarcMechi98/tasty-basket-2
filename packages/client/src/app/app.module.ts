@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/partials/header/header.component';
@@ -64,6 +65,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    RouterModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
