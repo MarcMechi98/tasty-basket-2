@@ -7,8 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TitleComponent {
   @Input() title!: string;
-  @Input() margin?: string = '1rem 0 1 rem .2rem';
+  @Input() margin?: string = '1rem 0 1rem .2rem';
   @Input() fontSize?: string = '1.7rem';
-
-  constructor() { }
 }

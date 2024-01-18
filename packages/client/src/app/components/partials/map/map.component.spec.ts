@@ -32,12 +32,8 @@ describe('MapComponent', () => {
     const expectedLatLng = new LatLng(latlng.lat, latlng.lng);
     component.order = {} as Order;
 
-    // Act
     component.addressLatLng = expectedLatLng;
 
-    // Assert
     expect(component.order.addressLatLng).toEqual(expectedLatLng);
   });
-
-
 });
