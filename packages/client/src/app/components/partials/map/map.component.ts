@@ -35,6 +35,14 @@ export class MapComponent implements OnChanges {
     return this.order.addressLatLng!;
   }
 
+  set addressLatLng(latlng: LatLng) {
+    if (!latlng.lat.toFixed) return;
+
+    latlng.lat = parseFloat(latlng.lat.toFixed(8));
+    latlng.lng = parseFloat(latlng.lng.toFixed(8));
+    this.order.addressLatLng = latlng;
+  }
+
   ngOnChanges(): void {
     if (!this.order) return;
 
@@ -43,6 +51,16 @@ export class MapComponent implements OnChanges {
     if (this.readonly && this.addressLatLng) {
       this.showLocationOnReadonlyMode();
     }
+  }
+
+  findMyLocation(): void {
+    this.locationService.getCurrentLocation().subscribe({
+      next: (latlng) => {
+        this.setMarker(latlng);
+        this.map.setView(latlng, this.MARKER_ZOOM_LVL);
+      },
+      error: (error) => console.error(error),
+    });
   }
 
   private initializeMap(): void {
@@ -56,16 +74,6 @@ export class MapComponent implements OnChanges {
 
     this.map.on('click', (event: LeafletMouseEvent) => {
       this.setMarker(event.latlng);
-    });
-  }
-
-  findMyLocation(): void {
-    this.locationService.getCurrentLocation().subscribe({
-      next: (latlng) => {
-        this.setMarker(latlng);
-        this.map.setView(latlng, this.MARKER_ZOOM_LVL);
-      },
-      error: (error) => console.log(error),
     });
   }
 
@@ -100,13 +108,5 @@ export class MapComponent implements OnChanges {
     map.keyboard.disable();
     map.off('click');
     this.currentMarker.dragging!.disable();
-  }
-
-  set addressLatLng(latlng: LatLng) {
-    if (!latlng.lat.toFixed) return;
-
-    latlng.lat = parseFloat(latlng.lat.toFixed(8));
-    latlng.lng = parseFloat(latlng.lng.toFixed(8));
-    this.order.addressLatLng = latlng;
   }
 }

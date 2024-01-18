@@ -21,7 +21,7 @@ export class InputValidationComponent implements OnInit, OnChanges{
 
   errorMessages: string[] = [];
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: any): void {
     this.checkValidation();
   }
 
