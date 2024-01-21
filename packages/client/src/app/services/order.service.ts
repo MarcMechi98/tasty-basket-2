@@ -9,7 +9,6 @@ import { CREATE_ORDER_URL, GET_ORDER_FOR_CURRENT_USER_URL, ORDER_PAY_URL, ORDER_
   providedIn: 'root'
 })
 export class OrderService {
-
   constructor(
     private http: HttpClient,
   ) { }

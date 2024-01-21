@@ -16,7 +16,6 @@ import {
   providedIn: 'root'
 })
 export class FoodService {
-
   constructor(
     private http: HttpClient
   ) { }

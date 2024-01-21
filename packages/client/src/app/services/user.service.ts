@@ -14,7 +14,6 @@ const USER_KEY = 'User';
   providedIn: 'root'
 })
 export class UserService {
-
   private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(this.getUserFromLocalstorage());
   user$!: Observable<User>;
 
