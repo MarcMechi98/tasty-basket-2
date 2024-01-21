@@ -9,5 +9,4 @@ export class NotFoundComponent {
   @Input() visible?: boolean = false;
   @Input() message?: string = 'Not found :(';
   @Input() resetLinkText?: string = 'Reset';
-  @Input() resetLinkRoute?: string = '/';
 }
