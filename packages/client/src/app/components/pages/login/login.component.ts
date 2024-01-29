@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   isSubmitted = false;
-  returnUrl = '';
+  returnUrl: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   get fc() { return this.loginForm.controls }
 
-  submit() {
+  public submit(): void {
     this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return;

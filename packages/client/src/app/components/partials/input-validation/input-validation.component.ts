@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 
 const VALIDATION_ERROR_MESSAGES: any = {
