@@ -41,7 +41,7 @@ export class RegisterPageComponent implements OnInit{
 
   get fc() { return this.registrationForm.controls }
 
-  async onSubmit(): Promise<void> {
+  public async onSubmit(): Promise<void> {
     this.isSubmitted = true;
 
     if (this.registrationForm.invalid) {

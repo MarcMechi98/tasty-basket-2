@@ -10,26 +10,27 @@ import { CartItem } from 'src/app/shared/models/cart-item';
   styleUrls: ['./cart-page.component.scss']
 })
 export class CartPageComponent {
-
-  cart!: Cart;
+  public cart!: Cart;
 
   constructor(
     private cartService: CartService,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.cartService.getCartObservable().subscribe(cart => {
       this.cart = cart;
     });
   }
 
-  removeFromCart(cartItem: CartItem): void {
+  public removeFromCart(cartItem: CartItem): void {
     this.cartService.removeFoodFromCart(cartItem.food.id);
   }
 
-  changeQuantity(cartItem: CartItem, quantity: number): void {
+  public changeQuantity(cartItem: CartItem, quantity: number): void {
     this.cartService.changeQuantity(cartItem.food.id, quantity);
   }
 
-  convertToNumber(value: string): number {
+  public convertToNumber(value: string): number {
     return parseInt(value);
   }
 }

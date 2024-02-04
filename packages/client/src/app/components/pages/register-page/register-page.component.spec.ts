@@ -85,7 +85,7 @@ describe('RegisterPageComponent', () => {
       token: '123'
     }
 
-    userService.register.and.returnValue(of(newUser)); // Assume a successful registration
+    userService.register.and.returnValue(of(newUser));
 
     await component.onSubmit();
 

@@ -4,7 +4,7 @@
   message="Your cart is empty!"
   resetLinkText="Go to home page"
 ></app-not-found>
-<div class="container" *ngIf="cart && cart.items.length">
+<ng-container class="container" *ngIf="cart && cart.items.length">
   <ul>
     <li *ngFor="let cartItem of cart.items">
       <div>
@@ -45,4 +45,4 @@
 
     <a routerLink="/checkout">Proceed to checkout</a>
   </div>
-</div>
+</ng-container>
