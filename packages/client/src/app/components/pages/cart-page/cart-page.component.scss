@@ -91,13 +91,13 @@
         margin-bottom: 1.5rem;
 
         &::before {
-          content: 'Count: ';
+          content: 'Items count: ';
           color: grey;
         }
       }
 
       .total-price::before {
-        content: 'Price: ';
+        content: 'Total price: ';
         color: grey;
       }
 
