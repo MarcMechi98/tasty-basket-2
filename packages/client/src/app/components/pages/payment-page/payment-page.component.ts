@@ -1,26 +1,27 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { Order } from './../../../shared/models/order';
-import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
+
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
-  styleUrl: './payment-page.component.scss'
+  styleUrls: ['./payment-page.component.scss']
 })
-export class PaymentPageComponent {
-
-  order: Order = new Order();
+export class PaymentPageComponent implements OnInit {
+  public order: Order = new Order();
 
   constructor(
-    orderService: OrderService,
-    router: Router
-  ) {
-    orderService.getNewOrderForCurrentUser().subscribe({
+    private orderService: OrderService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.orderService.getNewOrderForCurrentUser().subscribe({
       next: order => this.order = order,
       error: () => {
-        router.navigateByUrl('/checkout');
+        this.router.navigateByUrl('/checkout');
       },
     });
   }

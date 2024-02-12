@@ -7,7 +7,7 @@ import { CartItem } from 'src/app/shared/models/cart-item';
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.scss']
+  styleUrl: './cart-page.component.scss'
 })
 export class CartPageComponent {
   public cart!: Cart;

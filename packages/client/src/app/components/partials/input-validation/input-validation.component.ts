@@ -15,11 +15,10 @@ const VALIDATION_ERROR_MESSAGES: any = {
   styleUrl: './input-validation.component.scss'
 })
 export class InputValidationComponent implements OnInit, OnChanges{
-
   @Input() control!: AbstractControl;
   @Input() shouldDisplayError!: boolean;
 
-  errorMessages: string[] = [];
+  public errorMessages: string[] = [];
 
   ngOnChanges(changes: any): void {
     this.checkValidation();

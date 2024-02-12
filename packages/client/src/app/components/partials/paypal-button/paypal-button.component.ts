@@ -15,7 +15,6 @@ declare var paypal: any;
   styleUrl: './paypal-button.component.scss'
 })
 export class PaypalButtonComponent implements OnInit{
-
   @Input() order!: Order;
   @ViewChild('paypal', { static: true }) paypalElement!: ElementRef;
 
