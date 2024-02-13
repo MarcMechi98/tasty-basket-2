@@ -4,39 +4,48 @@
   message="Your cart is empty!"
   resetLinkText="Go to home page"
 ></app-not-found>
-<div class="container" *ngIf="cart && cart.items.length">
-  <ul>
-    <li *ngFor="let cartItem of cart.items">
-      <div>
-        <img [src]="cartItem.food.imageUrl" alt="Cart item food image" />
-      </div>
-      <div>
-        <a routerLink="/food/{{ cartItem.food.id }}">
-          {{ cartItem.food.name }}
-        </a>
-      </div>
-      <div>
-        <select
-          #quantitySelector
-          [value]="cartItem.quantity"
-          (change)="changeQuantity(cartItem, convertToNumber(quantitySelector.value))"
-        >
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
-      <div>
-        {{ cartItem.food.price | currency }}
-      </div>
-      <button class="remove-item-button" (click)="removeFromCart(cartItem)">
-        Remove
-      </button>
-    </li>
-  </ul>
+<div class="general-container" *ngIf="cart && cart.items.length">
+  <div class="main-container">
+    <ul>
+      <li *ngFor="let cartItem of cart.items">
+        <div>
+          <img [src]="cartItem.food.imageUrl" alt="Cart item food image" />
+        </div>
+        <div>
+          <a routerLink="/food/{{ cartItem.food.id }}">
+            {{ cartItem.food.name }}
+          </a>
+        </div>
+        <div>
+          <select
+            #quantitySelector
+            [value]="cartItem.quantity"
+            (change)="changeQuantity(cartItem, convertToNumber(quantitySelector.value))"
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div>
+          {{ cartItem.food.price | currency }}
+        </div>
+        <button class="remove-item-button" (click)="removeFromCart(cartItem)">
+          Remove
+        </button>
+      </li>
+    </ul>
 
+    <app-default-button
+      type="button"
+      text="Continue shopping"
+      (onClick)="goToHomePage()"
+      [fontSizeRem]="1"
+      bgColor="#295fe7"
+    ></app-default-button>
+  </div>
   <div class="checkout">
     <div class="checkout-container">
       <div class="foods-count">{{ cart.totalCount }}</div>

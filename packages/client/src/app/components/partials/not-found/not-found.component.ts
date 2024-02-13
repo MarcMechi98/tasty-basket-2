@@ -9,4 +9,8 @@ export class NotFoundComponent {
   @Input() visible?: boolean = true;
   @Input() message?: string = 'Page not found :(';
   @Input() resetLinkText?: string = 'Go back to homepage';
+
+  public goToHomePage(): void {
+    window.location.href = '/';
+  }
 }
