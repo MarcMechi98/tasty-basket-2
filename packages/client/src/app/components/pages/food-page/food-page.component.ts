@@ -27,7 +27,7 @@ export class FoodPageComponent {
     })
   }
 
-  addToCart() {
+  addToCart(): void {
     this.cartService.addFoodToCart(this.food);
     this.router.navigateByUrl('/cart');
   }

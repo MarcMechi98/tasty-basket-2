@@ -1,4 +1,4 @@
-<app-title title="Cart Page" margin="1.5rem 0 0 2.5rem"></app-title>
+<app-title title="Cart" margin="1.5rem 0 0 2.5rem"></app-title>
 <app-not-found
   [visible]=" !cart || !cart.items.length"
   message="Your cart is empty!"
@@ -52,6 +52,6 @@
       <div class="total-price">{{ cart.totalPrice | currency }}</div>
     </div>
 
-    <a routerLink="/checkout">Proceed to checkout</a>
+    <a routerLink="/checkout">Check order details</a>
   </div>
 </div>

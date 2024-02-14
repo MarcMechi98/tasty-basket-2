@@ -1,0 +1,39 @@
+.general-container {
+  margin: 2rem 1.5rem 1.5rem 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 1rem;
+}
+
+th, td {
+  border-bottom: 1px solid #e4e4e4;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+th {
+  background-color: #ffbbbb;
+
+  &:first-child {
+    border-top-left-radius: 0.5rem;
+  }
+
+  &:last-child {
+    border-top-right-radius: 0.5rem;
+  }
+}
+
+button {
+  padding: 0.5rem;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}

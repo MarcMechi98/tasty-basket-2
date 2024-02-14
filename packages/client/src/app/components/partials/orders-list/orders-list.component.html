@@ -1,0 +1,22 @@
+<div class="general-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Address</th>
+        <th>Status</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td># {{ order.id }}</td>
+        <td>{{ order.date }}</td>
+        <td>{{ order.address }}</td>
+        <td>{{ order.status }}</td>
+        <td><button class="remove-item-button">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
