@@ -14,3 +14,4 @@ export const CREATE_ORDER_URL = BASE_URL + '/orders/create';
 export const GET_ORDER_FOR_CURRENT_USER_URL = BASE_URL + '/orders/newOrderForCurrentUser';
 export const ORDER_PAY_URL = BASE_URL + '/orders/pay';
 export const ORDER_TRACK_URL = BASE_URL + '/orders/track/';
+export const ALL_ORDERS_FOR_USER_URL = BASE_URL + '/orders/user/';

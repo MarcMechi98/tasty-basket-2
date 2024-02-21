@@ -26,7 +26,6 @@ export class PaypalButtonComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    const self = this;
     paypal
     .Buttons({
       createOrder: (data: any, actions: any) => {
@@ -35,7 +34,7 @@ export class PaypalButtonComponent implements OnInit{
             {
               amount: {
                 currency_code: 'USD',
-                value: self.order.totalPrice,
+                value: this.order.totalPrice,
               },
             },
           ],
@@ -45,25 +44,25 @@ export class PaypalButtonComponent implements OnInit{
       onApprove: async (data: any, actions: any) => {
         const payment = await actions.order.capture();
         this.order.paymentId = payment.id;
-        self.orderService.pay(this.order).subscribe(
+        this.orderService.pay(this.order).subscribe(
           {
             next: (orderId) => {
               this.cartService.clearCart();
-              this.router.navigateByUrl('/track/' + orderId);
+              this.router.navigateByUrl('/orders/' + orderId);
               this.toastrService.success(
-                'Payment Saved Successfully',
+                'Payment successful',
                 'Success'
               );
             },
             error: (error) => {
-              this.toastrService.error('Payment Save Failed', 'Error');
+              this.toastrService.error('Payment failed', 'Payment Error');
             }
           }
         );
       },
 
       onError: (err: any) => {
-        this.toastrService.error('Payment Failed', 'Error');
+        this.toastrService.error('Payment failed', 'Payment Error');
         console.error(err);
       },
     })

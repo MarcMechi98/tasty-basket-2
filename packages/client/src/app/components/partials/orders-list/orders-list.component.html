@@ -12,10 +12,10 @@
     <tbody>
       <tr *ngFor="let order of orders">
         <td># {{ order.id }}</td>
-        <td>{{ order.date }}</td>
+        <td>{{ order.createdAt | date }}</td>
         <td>{{ order.address }}</td>
         <td>{{ order.status }}</td>
-        <td><button class="remove-item-button">Details</button></td>
+        <td><button [routerLink]="'/orders/' + order.id">Details</button></td>
       </tr>
     </tbody>
   </table>

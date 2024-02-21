@@ -36,7 +36,7 @@ router.get('/newOrderForCurrentUser', asyncHandler(async (req: any, res: any) =>
   if (order) {
     res.send(order);
   } else {
-    res.status(404).send({ message: 'Order not found' });
+    res.status(404).send({ message: 'Order not found 1' });
   }
 }));
 
@@ -45,7 +45,7 @@ router.post('/pay', asyncHandler(async (req: any, res: any) => {
   const order = await getNewOrderForCurrentUser(req);
 
   if (!order) {
-    res.status(404).send({ message: 'Order not found' });
+    res.status(404).send({ message: 'Order not found 2' });
     return;
   }
 
@@ -57,15 +57,36 @@ router.post('/pay', asyncHandler(async (req: any, res: any) => {
 }));
 
 router.get('/track/:id', asyncHandler(async (req: any, res: any) => {
-  const order = await OrderModel.findById(req.params.id);
+  try {
+    const order = await OrderModel.findById(req.params.id);
 
-  if (!order) {
-    res.status(404).send({ message: 'Order not found' });
-    return;
+    if (!order) {
+      return res.status(404).send({ message: 'Order not found' });
+    }
+
+    res.send(order);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: 'Internal server error' });
   }
-
-  res.send(order);
 }));
+
+router.get('/user/:userId', asyncHandler(async (req: any, res: any) => {
+  try {
+    const userId = req.params.userId || req.user.id;
+    const orders = await OrderModel.find({ user: userId });
+
+    if (orders.length === 0) {
+      return res.status(404).send({ message: 'User has no orders' });
+    }
+
+    res.send(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: 'Internal server error' });
+  }
+}));
+
 
 async function getNewOrderForCurrentUser(req: any) {
   return await OrderModel.findOne({

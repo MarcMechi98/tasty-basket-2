@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { OrderService } from 'src/app/services/order.service';
+import { UserService } from 'src/app/services/user.service';
+import { Order } from 'src/app/shared/models/order';
 
 @Component({
   selector: 'app-orders-page',
@@ -6,7 +9,17 @@ import { Component } from '@angular/core';
   styleUrl: './orders-page.component.scss'
 })
 export class OrdersPageComponent {
-  public orders = [{id: 3213123131, date: '10/01/1998', address: 'Orozimbo', status: 'pending'}, {id: 2312414124, date: '10/01/1998', address: 'Nova York', status: 'delivered'}]
+  public orders: Order[] = []
+  constructor(
+    private ordersService: OrderService,
+    private userService: UserService
+  ) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    const currentUserId = this.userService.currentUser.id
+
+    this.ordersService.getAllOrdersFromUser(currentUserId).subscribe(orders => {
+      this.orders = orders
+    })
+  }
 }
