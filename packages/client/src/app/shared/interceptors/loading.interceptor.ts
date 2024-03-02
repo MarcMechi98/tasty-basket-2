@@ -11,16 +11,14 @@ import { LoadingService } from 'src/app/services/loading.service';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
+
   private numOfPendingRequests = 0;
 
   constructor(
     private loadingService: LoadingService
   ) { }
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loadingService.showLoading();
     this.numOfPendingRequests++;
 

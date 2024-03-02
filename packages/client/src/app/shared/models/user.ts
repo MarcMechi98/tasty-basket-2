@@ -3,6 +3,7 @@ export class User {
   name!: string;
   email!: string;
   password!: string;
+  favorites!: string[];
   address!: string;
   token!: string;
   isAdmin!: boolean;

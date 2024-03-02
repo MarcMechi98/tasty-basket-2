@@ -10,15 +10,14 @@ import { UserService } from 'src/app/services/user.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
   constructor(
     private userService: UserService
   ) { }
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const user = this.userService.currentUser;
+
     if (user.token) {
       req = req.clone({
         setHeaders: {
@@ -29,5 +28,4 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req);
   }
-
 }

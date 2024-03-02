@@ -20,19 +20,19 @@ export class FoodService {
     private http: HttpClient
   ) { }
 
-  getAllFoods(): Observable<Food[]> {
+  public getAllFoods(): Observable<Food[]> {
     return this.http.get<Food[]>(ALL_FOODS_URL);
   }
 
-  getFoodsByName(searchTerm: string): Observable<Food[]> {
+  public getFoodsByName(searchTerm: string): Observable<Food[]> {
     return this.http.get<Food[]>(FOODS_BY_SEARCH_TERM_URL + searchTerm);
   }
 
-  getAllTags(): Observable<Tag[]> {
+  public getAllTags(): Observable<Tag[]> {
     return this.http.get<Tag[]>(ALL_TAGS_URL);
   }
 
-  getFoodsByTag(tagName: string): Observable<Food[]> {
+  public getFoodsByTag(tagName: string): Observable<Food[]> {
     if (tagName === 'All') {
       return this.getAllFoods();
     } else {
@@ -40,7 +40,7 @@ export class FoodService {
     }
   }
 
-  getFoodById(foodId: string): Observable<Food> {
+  public getFoodById(foodId: string): Observable<Food> {
     return this.http.get<Food>(FOOD_BY_ID_URL + foodId);
   }
 }

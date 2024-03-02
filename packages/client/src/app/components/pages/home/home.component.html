@@ -15,7 +15,7 @@
           <p class="content__food-name">
             {{ food.name }}
           </p>
-          <span class="content__heart-icon" [ngClass]="{ 'content__heart-icon--favorite': food.favorite }">
+          <span class="content__heart-icon" [ngClass]="{ 'content__heart-icon--favorite': food.isFavorite }">
             ❤
           </span>
         </div>

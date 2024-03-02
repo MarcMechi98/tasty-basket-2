@@ -3,8 +3,8 @@ export class Food {
   name!: string;
   price!: number;
   tags?: string[];
-  favorite!: boolean;
   stars!: number;
+  isFavorite?: boolean;
   imageUrl!: string;
   origins!: string[];
   cookingTime!: string;

@@ -10,7 +10,7 @@
       <span class="name">
         {{ food.name }}
       </span>
-      <span class="heart-icon" [ngClass]="{'favorite': food.favorite}">❤</span>
+      <span class="heart-icon" [ngClass]="{'favorite': food.isFavorite}" (click)="switchFavorite()">❤</span>
     </header>
 
     <div class="rating">
