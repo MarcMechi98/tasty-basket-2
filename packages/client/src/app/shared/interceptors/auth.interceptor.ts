@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private userService: UserService
-  ) { }
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const user = this.userService.currentUser;

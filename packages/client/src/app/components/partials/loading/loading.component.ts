@@ -8,7 +8,8 @@ import { LoadingService } from './../../../services/loading.service';
   styleUrl: './loading.component.scss'
 })
 export class LoadingComponent {
-  isLoading!: boolean;
+
+  public isLoading = false;
 
   constructor(
     loadingService: LoadingService

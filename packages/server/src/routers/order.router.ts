@@ -76,10 +76,6 @@ router.get('/user/:userId', asyncHandler(async (req: any, res: any) => {
     const userId = req.params.userId || req.user.id;
     const orders = await OrderModel.find({ user: userId });
 
-    if (orders.length === 0) {
-      return res.status(404).send({ message: 'User has no orders' });
-    }
-
     res.send(orders);
   } catch (err) {
     console.error(err);
