@@ -35,6 +35,8 @@ import { PaypalButtonComponent } from './components/partials/paypal-button/paypa
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
 import { OrdersListComponent } from './components/partials/orders-list/orders-list.component';
+import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { OrdersListComponent } from './components/partials/orders-list/orders-li
     PaypalButtonComponent,
     OrderTrackPageComponent,
     OrdersPageComponent,
-    OrdersListComponent
+    OrdersListComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { OrdersListComponent } from './components/partials/orders-list/orders-li
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

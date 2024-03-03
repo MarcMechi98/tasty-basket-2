@@ -12,6 +12,7 @@ import { authGuard } from './auth/guards/auth.guard';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { NotFoundComponent } from './components/partials/not-found/not-found.component';
 import { OrdersPageComponent } from './components/pages/orders-page/orders-page.component';
+import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'cart', component: CartPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterPageComponent },
+  { path: 'profile', component: ProfilePageComponent, canActivate: [authGuard]},
   { path: 'checkout', component: CheckoutPageComponent, canActivate: [authGuard] },
   { path: 'payment', component: PaymentPageComponent, canActivate: [authGuard] },
   { path: 'orders', component: OrdersPageComponent, canActivate: [authGuard] },

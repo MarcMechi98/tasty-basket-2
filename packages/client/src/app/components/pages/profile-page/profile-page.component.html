@@ -1,0 +1,35 @@
+<app-title title="Profile" margin="1.5rem 0 0 2.5rem"></app-title>
+
+<div class="profile">
+  <div class="section-card">
+    <span>image</span>
+    <div>
+      <h2>{{ user.name }}</h2>
+      <fa-icon class="email" [icon]="faEnvelope"></fa-icon><span>{{ user.email }}</span>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <fa-icon class="cart" [icon]="faCartShopping"></fa-icon><h3>Last Order Summary</h3>
+    <button routerLink="/orders">See all orders</button>
+  </div>
+
+  <div class="section-card">
+    <fa-icon class="cart" [icon]="faHeart"></fa-icon><h3>Favorites</h3>
+
+    <tr *ngFor="let food of favoriteFoods">
+      <td class="food-item">
+        <img [src]="food.imageUrl">
+      </td>
+      <td class="food-item">
+        {{ food.name }}
+      </td>
+      <td class="food-item">
+        {{ food.price | currency }}
+      </td>
+      <td class="food-item">
+        {{ food.price | currency }}
+      </td>
+    </tr>
+  </div>
+</div>

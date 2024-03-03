@@ -1,0 +1,27 @@
+.profile {
+
+  margin: 2rem 1.5rem 1.5rem 1.5rem;
+
+
+  .section-card {
+    border: solid 1px black;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  fa-icon.email {
+    color: red;
+  }
+
+  td {
+    height: 3rem;
+
+    img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
+      border-radius: 100rem;
+    }
+  }
+}
