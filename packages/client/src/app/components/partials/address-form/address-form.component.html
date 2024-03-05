@@ -1,0 +1,19 @@
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="streetName">Street Name</label>
+    <input type="text" id="streetName" formControlName="streetName" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" id="city" formControlName="city" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="number">Number</label>
+    <input type="text" id="number" formControlName="number" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input type="text" id="country" formControlName="country" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

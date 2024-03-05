@@ -2,7 +2,6 @@
 
   margin: 2rem 1.5rem 1.5rem 1.5rem;
 
-
   .section-card {
     border: solid 1px black;
     border-radius: 10px;
@@ -10,8 +9,21 @@
     margin-bottom: 1rem;
   }
 
+  fa-icon {
+    margin-right: .5rem;
+  }
+
   fa-icon.email {
     color: red;
+  }
+
+  img.profile-img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 100rem;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   }
 
   td {
@@ -23,5 +35,36 @@
       object-fit: cover;
       border-radius: 100rem;
     }
+  }
+
+  h2, h3 {
+    display: inline-block;
+    margin: 0;
+  }
+
+  div.name-email-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-card.name-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  div.orders-button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td {
+    text-align: center;
   }
 }

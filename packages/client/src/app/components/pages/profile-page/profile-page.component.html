@@ -1,35 +1,84 @@
 <app-title title="Profile" margin="1.5rem 0 0 2.5rem"></app-title>
 
 <div class="profile">
-  <div class="section-card">
-    <span>image</span>
-    <div>
-      <h2>{{ user.name }}</h2>
-      <fa-icon class="email" [icon]="faEnvelope"></fa-icon><span>{{ user.email }}</span>
+  <div class="section-card name-section">
+    <img class="profile-img" src="../../../../assets/images/food-1.jpg" alt="Profile picture">
+
+    <div class="name-email-container">
+      <h2>Welcome, {{ user.name }}</h2>
+      <div class="email-container">
+        <fa-icon class="email" [icon]="faEnvelope"></fa-icon><span>{{ user.email }}</span>
+      </div>
     </div>
   </div>
 
-  <div class="section-card">
-    <fa-icon class="cart" [icon]="faCartShopping"></fa-icon><h3>Last Order Summary</h3>
-    <button routerLink="/orders">See all orders</button>
+  <div class="section-card address-section">
+    <app-address-form></app-address-form>
   </div>
 
-  <div class="section-card">
+  <div class="section-card order-section">
+    <fa-icon class="cart" [icon]="faCartShopping"></fa-icon><h3>Last Order Summary</h3>
+
+    <table class="last-order">
+      <thead>
+        <tr>
+          <th style="width: 25%;">ID</th>
+          <th style="width: 25%;">Date</th>
+          <th style="width: 25%;">Total</th>
+          <th style="width: 25%;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{ lastOrder.id }}
+          </td>
+          <td>
+            {{ lastOrder.createdAt | date: 'short' }}
+          </td>
+          <td>
+            {{ lastOrder.totalPrice | currency }}
+          </td>
+          <td>
+            {{ lastOrder.status }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="orders-button-container">
+      <button routerLink="/orders">See all orders</button>
+    </div>
+  </div>
+
+  <div class="section-card favorites-section">
     <fa-icon class="cart" [icon]="faHeart"></fa-icon><h3>Favorites</h3>
 
-    <tr *ngFor="let food of favoriteFoods">
-      <td class="food-item">
-        <img [src]="food.imageUrl">
-      </td>
-      <td class="food-item">
-        {{ food.name }}
-      </td>
-      <td class="food-item">
-        {{ food.price | currency }}
-      </td>
-      <td class="food-item">
-        {{ food.price | currency }}
-      </td>
-    </tr>
+    <table class="favorites">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Origins</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let food of favoriteFoods">
+          <td class="food-item">
+            <img [src]="food.imageUrl">
+          </td>
+          <td class="food-item">
+            {{ food.name }}
+          </td>
+          <td class="food-item">
+            {{ food.origins | arraySpace }}
+          </td>
+          <td class="food-item">
+            {{ food.price | currency }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

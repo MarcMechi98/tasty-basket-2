@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faCartShopping, faEnvelope, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faEnvelope, faHeart, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
 import { Food } from 'src/app/shared/models/food';
+import { Order } from 'src/app/shared/models/order';
 
 @Component({
   selector: 'app-profile-page',
@@ -12,11 +14,14 @@ export class ProfilePageComponent implements OnInit{
   faCartShopping = faCartShopping
   faHeart = faHeart
   faEnvelope = faEnvelope
+  faMapMarkerAlt = faMapMarkerAlt
   public user: any = {}
   public favoriteFoods: Food[] = []
+  public lastOrder!: Order
 
   constructor(
     private userService: UserService,
+    private orderService: OrderService,
   ) {}
 
   ngOnInit() {
@@ -30,6 +35,11 @@ export class ProfilePageComponent implements OnInit{
 
     this.userService.getFavoritesFromUser(currentUserId).subscribe(favorites => {
       this.favoriteFoods = favorites;
+    });
+
+    this.orderService.getAllOrdersFromUser(currentUserId).subscribe(orders => {
+      this.lastOrder = orders[0];
+      console.log(this.lastOrder);
     });
   }
 }
