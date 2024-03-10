@@ -1,0 +1,11 @@
+<ul class="faq-container">
+  <li class="faq-item" *ngFor="let faq of faqs; let i = index">
+    <div class="question" (click)="toggleAnswer(i)">
+      <span>{{ faq.question }}</span>
+      <i class="arrow" [ngClass]="{ 'arrow-down': activeIndex === i, 'arrow-right': activeIndex !== i }"></i>
+    </div>
+    <div class="answer" *ngIf="activeIndex === i">
+      <p>{{ faq.answer }}</p>
+    </div>
+  </li>
+</ul>
