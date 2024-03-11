@@ -39,6 +39,8 @@ import { ProfilePageComponent } from './components/pages/profile-page/profile-pa
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ArraySpacePipe } from './shared/pipes/array-space.pipe';
 import { AddressFormComponent } from './components/partials/address-form/address-form.component';
+import { FooterComponent } from './components/partials/footer/footer.component';
+import { FaqComponent } from './components/partials/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { AddressFormComponent } from './components/partials/address-form/address
     OrdersListComponent,
     ProfilePageComponent,
     ArraySpacePipe,
-    AddressFormComponent
+    AddressFormComponent,
+    FooterComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

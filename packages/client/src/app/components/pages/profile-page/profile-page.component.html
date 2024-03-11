@@ -1,7 +1,7 @@
 <app-title title="Profile" margin="1.5rem 0 0 2.5rem"></app-title>
 
-<div class="profile">
-  <div class="section-card name-section">
+<article class="profile">
+  <section class="section-card name-section">
     <img class="profile-img" src="../../../../assets/images/food-1.jpg" alt="Profile picture">
 
     <div class="name-email-container">
@@ -10,13 +10,13 @@
         <fa-icon class="email" [icon]="faEnvelope"></fa-icon><span>{{ user.email }}</span>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="section-card address-section">
+  <section class="section-card address-section">
     <app-address-form></app-address-form>
-  </div>
+  </section>
 
-  <div class="section-card order-section">
+  <section class="section-card order-section">
     <fa-icon class="cart" [icon]="faCartShopping"></fa-icon><h3>Last Order Summary</h3>
 
     <table class="last-order">
@@ -49,9 +49,9 @@
     <div class="orders-button-container">
       <button routerLink="/orders">See all orders</button>
     </div>
-  </div>
+  </section>
 
-  <div class="section-card favorites-section">
+  <section class="section-card favorites-section">
     <fa-icon class="cart" [icon]="faHeart"></fa-icon><h3>Favorites</h3>
 
     <table class="favorites">
@@ -80,5 +80,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
+  </section>
+</article>
