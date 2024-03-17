@@ -1,14 +1,45 @@
-header {
+.header {
   background-color: #FFDAB9;
   padding: 20px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  height: 4rem;
+  height: 10rem;
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 999;
+
+  display: grid;
+  grid-template-columns: 1fr auto; /* First div takes auto width, the rest takes 1fr */
+  grid-template-rows: 1fr 1fr; /* Single row taking full height */
 }
 
-a {
+.brand {
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.login {
+
+}
+
+.options {
+
+}
+
+
+/* .header > div:first-child {
+  grid-row: 1 / span 2;
+}
+
+.header > div:nth-child(2),
+.header > div:nth-child(3) {
+  grid-row: 2;
+}
+ */
+
+/* a {
   color: #af1313;
 
   &:hover {
@@ -66,3 +97,4 @@ ul a {
   width: 100%;
   min-width: 8rem;
 }
+ */

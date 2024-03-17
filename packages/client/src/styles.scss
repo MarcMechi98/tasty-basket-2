@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 
 /* Reset and default styles */
 p, a, ul, li, h1, h2, h3, h4, h5, h6 {
@@ -12,6 +11,7 @@ p, a, ul, li, h1, h2, h3, h4, h5, h6 {
 html, body {
   margin: 0;
   padding: 0;
+  height: -webkit-fill-available;
 }
 
 body {
@@ -36,7 +36,7 @@ html {
 
 body {
   position: relative;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -54,4 +54,19 @@ body {
   html {
     font-size: 20px;
   }
+}
+
+/* Global Classes */
+.justify-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
