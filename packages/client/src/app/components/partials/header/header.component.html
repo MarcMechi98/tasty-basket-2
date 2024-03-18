@@ -1,43 +1,40 @@
-<header class="header">
+<header class="header" [ngClass]="{'header--scrolled': isScrolledDown}">
   <div class="brand">
-    <img src="../../../../assets/images/tasty-logo.png" alt="Brand logo" style="height: 40px;">
-    <a routerLink="/" class="logo" style="font-weight: 600;">Tasty Basket</a>
+    <img src="../../../../assets/images/tasty-logo.png" alt="Brand logo">
+    <a routerLink="/">Tasty Basket</a>
   </div>
 
-  <div  class="login justify-between" style="background-color: grey;">
-    <div *ngIf="!isLoggedIn" class="login__profile-container justify-between">
-      <fa-icon class="login__icon" [icon]="faUser"></fa-icon>
-      <a routerLink="/login">Login/Register now!</a>
+  <div class="login">
+    <div *ngIf="!isLoggedIn && !isInLoginPage" class="login__not-logged-in">
+      <a routerLink="/login">
+        <strong>Login</strong>/<strong>Register</strong> now!
+      </a>
     </div>
 
-    <div *ngIf="isLoggedIn" class="justify-between">
-      <div class="userProfile" class="login__profile-container justify-between">
-        <fa-icon class="login__icon" [icon]="faUser"></fa-icon>
-        <p>Welcome back, {{ user.name }}!</p>
+    <div *ngIf="isLoggedIn" class="login__logged-in">
+      <div class="userProfile" class="login__welcome">
+        <fa-icon [icon]="faUser"></fa-icon>
+        <p>Welcome back, <strong>{{ user.name }}</strong>!</p>
       </div>
-      <div>
-        <a (click)="logout()">
-          <fa-icon class="login__logout" [icon]="faArrowRightFromBracket"></fa-icon>
-        </a>
-      </div>
+      <a (click)="logout()">
+        <fa-icon class="login__logout-icon" [icon]="faArrowRightFromBracket"></fa-icon>
+      </a>
     </div>
   </div>
 
-  <nav class="options justify-between">
-    <ul *ngIf="isLoggedIn" class="justify-between">
+  <nav class="options">
+    <ul *ngIf="isLoggedIn">
       <li>
-        <a routerLink="/profile">Profile</a>
+        <a routerLink="/profile" class="options__text">Profile</a>
       </li>
       <li>
-        <a routerLink="/orders">Orders</a>
+        <a routerLink="/orders" class="options__text">Orders</a>
       </li>
     </ul>
 
-    <div>
-      <a routerLink="/cart">
-        <fa-icon class="cart" [icon]="faShoppingCart"></fa-icon>
-        <span *ngIf="cartQuantity !== 0">{{ cartQuantity }}</span>
-      </a>
-    </div>
+    <a *ngIf="!isInLoginPage" routerLink="/cart" class="options__cart-container">
+      <fa-icon class="options__cart" [icon]="faShoppingCart"></fa-icon>
+      <span *ngIf="cartQuantity !== 0" class="options__cart-number">{{ cartQuantity }}</span>
+    </a>
   </nav>
 </header>

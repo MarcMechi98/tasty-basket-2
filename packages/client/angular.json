@@ -34,7 +34,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/scss/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/leaflet/dist/leaflet.css"
             ],
@@ -100,7 +100,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/scss/styles.scss"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"

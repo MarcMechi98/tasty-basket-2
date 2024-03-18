@@ -1,5 +1,11 @@
 @import 'normalize.css';
 
+:root {
+  --primary-color: #af1313;
+  --light-brown: #654321;
+  --dark-brown: #3B170B;
+}
+
 /* Reset and default styles */
 p, a, ul, li, h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -38,7 +44,7 @@ body {
   position: relative;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
