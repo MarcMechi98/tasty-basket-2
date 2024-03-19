@@ -1,35 +1,105 @@
 @import '../../../../scss/_mixins.scss';
 
-.header {
+:host {
+  --light-peach: #FFDAB9;
+  --darker-peach: rgb(246, 204, 167);
+  --brand-color: hsla( 355, 75%, 56%, 1 );
+}
+
+/* UPPER HEADER */
+.main-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
-  background-color: #FFDAB9;
+  background-color: var(--light-peach);
   padding: 20px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
   height: 7rem;
   position: fixed;
   top: 0;
-  width: 100%;
   z-index: 999;
+  width: 100%;
   transition: background-color 0.3s, box-shadow 0.3s;
 
+  &--with-shadow {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
   &--scrolled {
-    background-color: rgb(246, 204, 167);
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    background-color: var(--darker-peach);
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .header {
+  .main-header {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
   }
 }
 
+/* DROPDOWN HEADER */
+.dropdown-header {
+  position: fixed;
+  top: 7rem;
+  z-index: 999;
+  background-color: var(--light-peach);
+  width: 100vw;
+  padding: 0 20px 20px 20px;
+  box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (min-width: 1200px) {
+    display: none;
+  }
+
+  &__item {
+    padding: 10px;
+
+    a {
+      color: var(--dark-brown);
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+    }
+  }
+
+  &__item:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: .1rem;
+    background-color: rgba(59, 23, 11, 0.5);
+  }
+
+  &__item:last-child {
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  &__cart-number {
+    font-weight: 500;
+    background-color: #ff4d4d;
+    color: white;
+    padding: .1rem .45rem;
+    border-radius: 100rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* BRAND AND LOGO */
 .brand {
   grid-row: span 2;
   @include justify-gap(20px);
@@ -41,10 +111,11 @@
   a {
     font-family: "Ma Shan Zheng", cursive;
     font-size: 2.5rem;
-    color : hsla( 355, 75%, 56%, 1 );
+    color : var(--brand-color);
   }
 }
 
+/* LOGIN LINKS */
 .login {
   display: none
 }
@@ -109,6 +180,7 @@
   }
 }
 
+/* OPTIONS WHEN LOGGED IN */
 .options {
   display: none;
 }
@@ -169,7 +241,7 @@
   }
 }
 
-
+/* HAMBURGER MENU ICON */
 .hamburger-menu {
   display: block;
   align-self: center;
