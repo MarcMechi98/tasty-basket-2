@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { faArrowRightFromBracket, faBars, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faBars, faShoppingCart, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { CartService } from './../../../services/cart.service';
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   public faArrowRightFromBracket = faArrowRightFromBracket;
   public faShoppingCart = faShoppingCart;
   public faBars = faBars;
+  public faX = faX;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

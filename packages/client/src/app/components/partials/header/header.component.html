@@ -42,22 +42,24 @@
       </a>
     </nav>
 
-    <div #hamburgerMenu class="hamburger-menu" [ngClass]="{'hamburger-menu--expanded': true}" (click)="toggleMenu()">
-      <fa-icon [icon]="faBars"></fa-icon>
+    <div #hamburgerMenu class="hamburger-menu" (click)="toggleMenu()">
+      <fa-icon [icon]="faBars" *ngIf="!shouldShowDropdown"></fa-icon>
+      <fa-icon [icon]="faX" *ngIf="shouldShowDropdown"></fa-icon>
     </div>
   </div>
 
-  <div *ngIf="shouldShowDropdown" class="dropdown-header">
+  <!-- DROPDOWN HEADER -->
+  <div class="dropdown-header" [ngClass]="{'dropdown-header--open': shouldShowDropdown}">
     <ul *ngIf="isLoggedIn">
-      <li class="dropdown-header__item">
+      <li class="dropdown-item">
         <a routerLink="/profile">Profile</a>
       </li>
-      <li class="dropdown-header__item">
+      <li class="dropdown-item">
         <a routerLink="/orders">Orders</a>
       </li>
-      <li class="dropdown-header__item">
+      <li class="dropdown-item">
         <a *ngIf="!isInLoginPage" routerLink="/cart">Cart</a>
-        <span *ngIf="cartQuantity !== 0" class="dropdown-header__cart-number">{{ cartQuantity }}</span>
+        <span *ngIf="cartQuantity !== 0" class="dropdown-number">{{ cartQuantity }}</span>
       </li>
     </ul>
   </div>
