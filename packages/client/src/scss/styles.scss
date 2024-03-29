@@ -7,7 +7,7 @@
   --vibrant-red: #EB1A25;
 }
 
-/* Reset and default styles */
+/* RESET AND DEFAULT STYLES */
 p, a, ul, li, h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
@@ -35,7 +35,7 @@ ul, li {
   box-sizing: border-box;
 }
 
-/* Base mobile size styles */
+/* BASE MOBILE SIZE STYLES */
 html {
   font-size: 16px;
   line-height: 1.5;
@@ -49,21 +49,21 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Tablet size styles */
+/* TABLET SIZE STYLES */
 @media only screen and (min-width: 620px) {
   html {
     font-size: 18px;
   }
 }
 
-/* Desktop size styles */
+/* DESKTOP SIZE STYLES */
 @media only screen and (min-width: 1200px) {
   html {
     font-size: 20px;
   }
 }
 
-/* Global Classes */
+/* GLOBAL CLASSES */
 .justify-center {
   display: flex;
   flex-direction: row;

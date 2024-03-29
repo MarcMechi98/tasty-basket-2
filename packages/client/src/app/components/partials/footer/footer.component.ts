@@ -8,8 +8,8 @@ import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  faInstagram = faInstagram
-  faXTwitter = faXTwitter
-  faFacebook = faFacebook
-  faBasketShopping = faBasketShopping
+  public faInstagram = faInstagram
+  public faXTwitter = faXTwitter
+  public faFacebook = faFacebook
+  public faBasketShopping = faBasketShopping
 }
