@@ -68,11 +68,32 @@
   .footer {
     &__main-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:repeat(3, 1fr);
       grid-template-rows: 2fr 1fr;
     }
 
     &__section {
+      padding: 0 10px;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+
+      &:first-child {
+        p {
+          max-width: 75%;
+        }
+      }
+
+      &:nth-child(3) {
+        ul {
+          display: flex;
+          justify-content: space-between;
+          max-width: 80%;
+          margin: auto 0;
+        }
+      }
+
       &:last-child {
         grid-column: span 3;
         align-self: center;
@@ -92,11 +113,17 @@
 
     &__main-container {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: repeat(4, 1fr);
       max-width: 80%;
     }
 
     &__section {
+      padding: 0 20px;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      align-items: center;
+
       &:nth-child(3) {
         display: flex;
         flex-direction: column;
