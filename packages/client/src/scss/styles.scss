@@ -62,18 +62,3 @@ body {
     font-size: 20px;
   }
 }
-
-/* GLOBAL CLASSES */
-.justify-center {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.justify-between {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}

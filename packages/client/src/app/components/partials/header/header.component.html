@@ -1,65 +1,80 @@
-<header>
+<header class="header">
   <div
-    class="main-header"
-    [ngClass]="{'main-header--scrolled': isScrolledDown && !shouldShowDropdown, 'main-header--with-shadow': !shouldShowDropdown}"
+    class="header__main"
+    [ngClass]="{ 'header__main--with-shadow': !shouldShowDropdown, 'header__main--scrolled': isScrolledDown}"
   >
-    <div class="brand">
+    <div class="header__brand">
       <img src="../../../../assets/images/tasty-logo.png" alt="Brand logo">
       <a routerLink="/">Tasty Basket</a>
     </div>
 
-    <div class="login">
-      <div *ngIf="!isLoggedIn && !isInLoginPage" class="login__not-logged-in">
+    <!-- LOGIN LINKS -->
+    <div class="header__login-container">
+      <div *ngIf="!isLoggedIn && !isInLoginPage" class="header__not-logged-in">
         <a routerLink="/login">
           <strong>Login</strong>/<strong>Register</strong> now!
         </a>
       </div>
 
-      <div *ngIf="isLoggedIn" class="login__logged-in">
-        <div class="userProfile" class="login__welcome">
+      <div *ngIf="isLoggedIn" class="header__logged-in">
+        <div class="userProfile" class="header__welcome">
           <fa-icon [icon]="faUser"></fa-icon>
           <p>Welcome back, <strong>{{ user.name }}</strong>!</p>
         </div>
         <a (click)="logout()">
-          <fa-icon class="login__logout-icon" [icon]="faArrowRightFromBracket"></fa-icon>
+          <fa-icon class="header__logout-icon" [icon]="faArrowRightFromBracket"></fa-icon>
         </a>
       </div>
     </div>
 
-    <nav class="options">
+    <!-- NAV OPTIONS -->
+    <nav class="header__options">
       <ul *ngIf="isLoggedIn">
         <li>
-          <a routerLink="/profile" class="options__text">Profile</a>
+          <a routerLink="/profile" class="header__options-text">Profile</a>
         </li>
         <li>
-          <a routerLink="/orders" class="options__text">Orders</a>
+          <a routerLink="/orders" class="header__options-text">Orders</a>
         </li>
       </ul>
 
-      <a *ngIf="!isInLoginPage" routerLink="/cart" class="options__cart-container">
-        <fa-icon class="options__cart" [icon]="faShoppingCart"></fa-icon>
-        <span *ngIf="cartQuantity !== 0" class="options__cart-number">{{ cartQuantity }}</span>
+      <a *ngIf="!isInLoginPage" routerLink="/cart" class="header__cart-container">
+        <fa-icon [icon]="faShoppingCart"></fa-icon>
+        <span *ngIf="cartQuantity !== 0" class="header__cart-number">{{ cartQuantity }}</span>
       </a>
     </nav>
 
-    <div #hamburgerMenu class="hamburger-menu" (click)="toggleMenu()">
+    <div #hamburgerMenu class="header__menu-icon" *ngIf="!isInLoginPage" (click)="toggleMenu()">
       <fa-icon [icon]="faBars" *ngIf="!shouldShowDropdown"></fa-icon>
       <fa-icon [icon]="faX" *ngIf="shouldShowDropdown"></fa-icon>
     </div>
   </div>
 
   <!-- DROPDOWN HEADER -->
-  <div class="dropdown-header" [ngClass]="{'dropdown-header--open': shouldShowDropdown}">
+  <div class="header__dropdown" [ngClass]="{ 'header__dropdown--open': shouldShowDropdown, 'header__dropdown--scrolled': isScrolledDown }" *ngIf="!isInLoginPage">
+    <ul *ngIf="!isLoggedIn">
+      <li class="header__dropdown-item">
+        <a routerLink="/login">Login/Register now!</a>
+      </li>
+      <li class="header__dropdown-item">
+        <a *ngIf="!isInLoginPage" routerLink="/cart">Cart</a>
+        <span *ngIf="cartQuantity !== 0" class="header__dropdown-number">{{ cartQuantity }}</span>
+      </li>
+    </ul>
+
     <ul *ngIf="isLoggedIn">
-      <li class="dropdown-item">
+      <li class="header__dropdown-item">
+        <a (click)="logout()" routerLink="/profile">Logout</a>
+      </li>
+      <li class="header__dropdown-item">
         <a routerLink="/profile">Profile</a>
       </li>
-      <li class="dropdown-item">
+      <li class="header__dropdown-item">
         <a routerLink="/orders">Orders</a>
       </li>
-      <li class="dropdown-item">
+      <li class="header__dropdown-item">
         <a *ngIf="!isInLoginPage" routerLink="/cart">Cart</a>
-        <span *ngIf="cartQuantity !== 0" class="dropdown-number">{{ cartQuantity }}</span>
+        <span *ngIf="cartQuantity !== 0" class="header__dropdown-number">{{ cartQuantity }}</span>
       </li>
     </ul>
   </div>

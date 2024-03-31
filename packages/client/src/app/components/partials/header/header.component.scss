@@ -6,153 +6,182 @@
   --brand-color: hsla( 355, 75%, 56%, 1 );
 }
 
-/* UPPER HEADER */
-.main-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: var(--light-peach);
-  padding: 20px;
-  height: 7rem;
+.header {
+  width: 100%;
   position: fixed;
   top: 0;
   z-index: 999;
-  width: 100%;
+  background-color: var(--light-peach);
   transition: background-color 0.3s, box-shadow 0.3s;
 
-  &--with-shadow {
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  &--scrolled {
-    background-color: var(--darker-peach);
-  }
-}
-
-/* DROPDOWN HEADER */
-.dropdown-header {
-  display: none;
-  position: fixed;
-
-  &--open {
-    top: 7rem;
-    z-index: 900;
-    background-color: var(--light-peach);
-    width: 100vw;
-    padding: 0 20px 20px 20px;
-    box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.2);
+  &__main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 25px;
+    height: 7rem;
+    transition: background-color 0.3s, box-shadow 0.3s;
 
-    .dropdown-item {
-      padding: 10px;
-
-      a {
-        color: var(--dark-brown);
-        font-weight: 600;
-        font-size: 1.1rem;
-        position: relative;
-      }
+    &--scrolled {
+      background-color: var(--darker-peach);
     }
 
-    .dropdown-item:first-child::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      height: .3rem;
-      background-color: rgba(59, 23, 11, 0.5);
-      animation: shrinkWidth 0.3s ease-in-out forwards;
+    &--with-shadow {
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  /* BRAND AND LOGO */
+  &__brand {
+    height: 100%;
+    grid-row: span 2;
+    @include justify-gap(20px);
+
+    img {
+      height: 100%;
     }
 
-    @keyframes shrinkWidth {
-      from {
-        width: 100%;
-      }
-      to {
-        width: 90%;
-      }
+    a {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: 2.5rem;
+      color : var(--brand-color);
     }
+  }
 
-    .dropdown-item:last-child {
-      padding-bottom: 0;
+  /* HAMBURGER ICON */
+  &__menu-icon {
+    display: block;
+    align-self: center;
+    justify-self: end;
+    color: var(--dark-brown);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* LOGIN LINKS */
+  &__login-container {
+    display: none;
+  }
+
+  &__not-logged-in {
+    display: none;
+  }
+
+  /* NAV OPTIONS */
+  &__options {
+    display: none;
+  }
+
+  /* DROPDOWN */
+  &__dropdown {
+    display: none;
+    position: fixed;
+    transition: background-color 0.3s;
+
+    &--open {
+      top: 7rem;
+      z-index: 999;
+      background-color: var(--light-peach);
+      width: 100vw;
+      padding: 0 20px 20px 20px;
+      box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.2);
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
     }
 
-    .dropdown-number {
-      font-weight: 500;
-      background-color: #ff4d4d;
-      color: white;
-      padding: .1rem .45rem;
-      border-radius: 100rem;
-      font-size: 0.8rem;
+    &--scrolled {
+      background-color: var(--darker-peach);
     }
   }
-}
 
-/* BRAND AND LOGO */
-.brand {
-  grid-row: span 2;
-  @include justify-gap(20px);
+  &__dropdown-item {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 
-  img {
-    height: 75px;
+    a {
+      color: var(--dark-brown);
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+    }
   }
 
-  a {
-    font-family: "Ma Shan Zheng", cursive;
-    font-size: 2.5rem;
-    color : var(--brand-color);
+  &__dropdown-item:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: .1rem;
+    background-color: rgba(59, 23, 11, 0.5);
+    animation: shrinkWidth 0.2s ease-in-out forwards;
   }
-}
 
-/* LOGIN LINKS */
-.login {
-  display: none
-}
+  @keyframes shrinkWidth {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 90%;
+    }
+  }
 
-/* OPTIONS WHEN LOGGED IN */
-.options {
-  display: none;
-}
+  &__dropdown-item:last-child {
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
 
-/* HAMBURGER MENU ICON */
-.hamburger-menu {
-  display: block;
-  align-self: center;
-  justify-self: end;
-  color: var(--dark-brown);
-  font-size: 1.5rem;
-  cursor: pointer;
+  &__dropdown-number {
+    font-weight: 500;
+    background-color: #ff4d4d;
+    color: white;
+    padding: .1rem .45rem;
+    border-radius: 100rem;
+    font-size: 0.8rem;
+  }
 }
 
 /* DESKTOP SIZE */
 @media only screen and (min-width: 1200px) {
-  .main-header {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
-  }
-
-  .options {
-    @include justify-gap(50px);
-    margin-left: auto;
-
-    ul {
-      @include justify-gap(30px);
+  .header {
+    &__main {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: 1fr 1fr;
     }
 
-    &__text {
+    &__menu-icon {
+      display: none;
+    }
+
+    &__dropdown {
+      &--open {
+        display: none;
+      }
+    }
+
+    &__options {
+      @include justify-gap(50px);
+      margin-left: auto;
+
+      ul {
+        @include justify-gap(30px);
+      }
+    }
+
+    &__options-text {
       color: var(--dark-brown);
       position: relative;
       font-weight: 600;
@@ -196,16 +225,16 @@
       border-radius: 100rem;
       font-size: 0.8rem;
     }
-  }
 
-  .login {
-    @include justify-between();
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    font-size: .8rem;
-    margin-left: auto;
-    color: var(--light-brown);
+    &__login-container {
+      @include justify-between();
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: .8rem;
+      margin-left: auto;
+      color: var(--light-brown);
+    }
 
     &__not-logged-in {
       @include justify-gap(8px);
@@ -253,16 +282,6 @@
         color: var(--dark-brown);
         cursor: pointer;
       }
-    }
-  }
-
-  .hamburger-menu {
-    display: none;
-  }
-
-  .dropdown-header {
-    &--open {
-      display: none;
     }
   }
 }
