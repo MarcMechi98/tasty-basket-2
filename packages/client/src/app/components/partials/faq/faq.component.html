@@ -1,11 +1,14 @@
-<ul class="faq-container">
-  <li class="faq-item" *ngFor="let faq of faqs; let i = index">
-    <div class="question" (click)="toggleAnswer(i)">
-      <span>{{ faq.question }}</span>
-      <i class="arrow" [ngClass]="{ 'arrow-down': activeIndex === i, 'arrow-right': activeIndex !== i }"></i>
-    </div>
-    <div class="answer" *ngIf="activeIndex === i">
-      <p>{{ faq.answer }}</p>
+<ul class="faq">
+  <li *ngFor="let item of faqs; let i = index">
+    <button
+      class="faq__accordion"
+      [ngClass]="{ 'faq__accordion--rounded-bottom': !item.active && i === faqs.length - 1 }"
+      (click)="toggleFaq(i)"
+    >
+      {{ item.title }} <fa-icon [icon]="item.active ? faCarretDown : faCarretLeft" aria-label="item.active ? 'Colapse' : 'Expand'"></fa-icon>
+    </button>
+    <div class="faq__panel" [ngClass]="{ 'faq__panel--active': item.active }">
+      <p>{{ item.content }}</p>
     </div>
   </li>
 </ul>

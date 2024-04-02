@@ -1,34 +1,40 @@
-
-ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 0;
+:host {
+  --dark-grey: #414141;
+  --vibrant-red: #e72929;
 }
 
-li {
-  a {
-    height: 23rem;
-    width: 20rem;
-    border: 1px solid whitesmoke;
-    border-radius: 1rem;
-    margin: .5rem;
+.home {
+  height: 100%;
+  width: 100%;
+
+  &__food-cards {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    color: #e72929;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+  }
 
-    &:hover {
-      transition: all .2s ease-in-out;
-      cursor: pointer;
-      opacity: .9;
-    }
+  &__card {
+    a {
+      height: 23rem;
+      width: 20rem;
+      border: 1px solid whitesmoke;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      color: var(--vibrant-red);
+      box-shadow: 0 0 11px rgba(33,33,33,.2);
 
-    img {
-      height: 14.5rem;
-      object-fit: cover;
+      img {
+        height: 14.5rem;
+        object-fit: cover;
+      }
     }
   }
 }
@@ -52,7 +58,7 @@ li {
     color: grey;
 
     &--favorite {
-      color: #e72929;
+      color: var(--vibrant-red);
     }
   }
 
@@ -84,13 +90,33 @@ li {
   &__cooking-time {
     flex: 3;
     text-align: end;
-    font-size: .9rem;
+    font-size: .7rem;
     font-weight: 600;
   }
 
   &__price {
-    color: #414141;
+    color: var(--dark-grey);
     font-size: 1.1rem;
+    font-weight: 600;
     margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .home {
+    &__card {
+      a {
+        &:hover {
+          img {
+            opacity: 1;
+          }
+        }
+
+        img {
+          opacity: .8;
+          transition: opacity 0.3s ease-in-out;
+        }
+      }
+    }
   }
 }

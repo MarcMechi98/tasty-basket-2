@@ -45,7 +45,7 @@
       }
 
       p {
-        font-size: .9rem;
+        font-size: .8rem;
         color: var(--footer-light-brown);
       }
     }
@@ -114,7 +114,7 @@
     &__main-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      max-width: 80%;
+      max-width: 90%;
     }
 
     &__section {

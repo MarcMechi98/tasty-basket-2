@@ -1,23 +1,22 @@
 /* MOBILE SIZE */
 main {
-  padding: 8rem 1rem 2rem 1rem;
-  min-height: 100vh;
+  position: relative;
   margin: 0 auto;
-  background-color: lightblue;
+  max-width: 90%;
+  min-height: 100%;
+  padding-top: 8.5rem;
 }
 
 /* TABLET SIZE */
 @media only screen and (min-width: 620px) {
   main {
     max-width: 800px;
-    background-color: lightgreen;
   }
 }
 
 /* DESKTOP SIZE */
 @media only screen and (min-width: 1200px) {
   main {
-    max-width: 1200px;
-    background-color: lightcoral;
+    max-width: 80vw;
   }
 }

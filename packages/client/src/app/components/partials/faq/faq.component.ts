@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faCaretDown, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-faq',
@@ -6,17 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent {
-  faqs = [
-    { question: 'Question 1', answer: 'Answer to question 1' },
-    { question: 'Question 2', answer: 'Answer to question 2' },
-    { question: 'Question 3', answer: 'Answer to question 3' },
-    { question: 'Question 4', answer: 'Answer to question 4' },
-    { question: 'Question 5', answer: 'Answer to question 5' }
+  public faqs = [
+    { title: 'How do I place an order?', content: 'To place an order, simply browse our website, select the items you want to purchase, and proceed to checkout. Follow the on-screen instructions to complete your order.', active: false },
+    { title: 'Can I cancel or change my order?', content: "No, you can't cancel orders yet. However we could implement this feature in the future.", active: false },
+    { title: 'What payment methods do you accept?', content: "For now, we only accept PayPal. Make sure to use the test login and password provided in the repository's README.", active: false },
+    { title: 'How do I provide my address?', content: "We use Leaftlet for our order map. Simply click on 'Find my location' and let we do the rest.",  active: false }
   ];
 
-  activeIndex: any = null;
+  public faCarretDown = faCaretDown;
+  public faCarretLeft = faCaretLeft;
 
-  toggleAnswer(index: number) {
-    this.activeIndex = this.activeIndex === index ? null : index;
+  public toggleFaq(index: number): void {
+    this.faqs[index].active = !this.faqs[index].active;
+
+    this.faqs.forEach((faq, i) => {
+      if (i !== index) {
+        faq.active = false;
+      }
+    });
   }
 }
