@@ -57,12 +57,14 @@
   }
 }
 
+/* TABLET SIZE */
 @media only screen and (min-width: 620px) and (max-width: 1199px) {
   .faq {
     max-width: 90%;
   }
 }
 
+/* DESKTOP SIZE */
 @media only screen and (min-width: 1200px) {
   .faq {
     max-width: 70%;

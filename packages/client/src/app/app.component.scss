@@ -10,13 +10,13 @@ main {
 /* TABLET SIZE */
 @media only screen and (min-width: 620px) {
   main {
-    max-width: 800px;
+    max-width: 80vw;
   }
 }
 
 /* DESKTOP SIZE */
 @media only screen and (min-width: 1200px) {
   main {
-    max-width: 80vw;
+    max-width: 85vw;
   }
 }

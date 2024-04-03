@@ -1,45 +1,47 @@
-<app-not-found
-  [visible]="!food"
-  message="Food not found!"
-  resetLinkText="Go to home page"
-></app-not-found>
-<section class="food-container" *ngIf="food && food.id">
-  <img [src]="food.imageUrl" [alt]="food.name" style="width: 300px;">
-  <div class="details">
-    <header class="header">
-      <span class="name">
-        {{ food.name }}
-      </span>
-      <span class="heart-icon" [ngClass]="{'favorite': food.isFavorite}" (click)="switchFavorite()">❤</span>
-    </header>
+<div class="food-page">
+  <app-not-found
+    [visible]="!food"
+    message="Food not found!"
+    resetLinkText="Go to home page"
+  ></app-not-found>
 
-    <div class="rating">
-      <app-star-rating [stars]="food.stars" [size]="1.8"></app-star-rating>
-    </div>
+  <section class="food-container" *ngIf="food && food.id">
+    <img [src]="food.imageUrl" [alt]="food.name" class="food-container__image">
+    <div class="details">
+      <header class="header">
+        <span class="name">
+          {{ food.name }}
+        </span>
+        <span class="heart-icon" [ngClass]="{'favorite': food.isFavorite}" (click)="switchFavorite()">❤</span>
+      </header>
 
-    <div class="origins">
-      <span *ngFor="let origin of food.origins">
-        {{ origin }}
-      </span>
-    </div>
+      <div class="rating">
+        <app-star-rating [stars]="food.stars" [size]="1.5"></app-star-rating>
+      </div>
 
-    <div class="tags">
-      <a *ngFor="let tag of food.tags" routerLink="/tag/{{ tag }}">
-        {{ tag }}
-      </a>
-    </div>
+      <div class="origins">
+        <span *ngFor="let origin of food.origins">
+          {{ origin }}
+        </span>
+      </div>
 
-    <div class="cooking-time">
-      <span>
-        Cook time of around <strong>{{ food.cookingTime }}</strong> minutes
-      </span>
-    </div>
+      <div class="tags">
+        <a *ngFor="let tag of food.tags" routerLink="/tag/{{ tag }}">
+          {{ tag }}
+        </a>
+      </div>
 
-    <div class="price">
-      <span>
-        {{ food.price | currency }}
-      </span>
+      <div class="cooking-time">
+        <span>
+          Cooking time of <strong>{{ food.cookingTime }}</strong> minutes
+        </span>
+      </div>
+
+      <div class="price">
+        <p>Price: <span>{{ food.price | currency }}</span></p>
+      </div>
+
       <button (click)="addToCart()">Add to cart</button>
     </div>
-  </div>
-</section>
+  </section>
+</div>
