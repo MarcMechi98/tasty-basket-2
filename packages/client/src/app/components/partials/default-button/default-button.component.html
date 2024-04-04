@@ -1,14 +1,10 @@
-<div class="container">
-  <button
-    [ngStyle]="{
-      color,
-      'background-color': bgColor,
-      'font-size.rem': fontSizeRem,
-      'width.rem': widthRem,
-    }"
-    [type]="type"
-    (click)="onClick.emit($event)"
-  >
-    {{ text }}
-  </button>
-</div>
+<button
+  [type]="type"
+  class="default-button"
+  [ngStyle]="{ 'width': width, 'fontSize.rem': fontSizeRem, 'fontWeight': fontWeight }"
+  [routerLink]="routerLink"
+  (click)="onClick.emit($event)"
+>
+  {{ text }}
+</button>
+

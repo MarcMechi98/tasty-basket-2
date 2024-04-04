@@ -7,12 +7,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DefaultButtonComponent {
 
-  @Input() type: 'submit' | 'button' = 'submit';
+  @Input() type: 'submit' | 'button' = 'button';
   @Input() text: string = 'Submit';
-  @Input() bgColor: string = '#e72929';
-  @Input() color: string = 'white';
-  @Input() fontSizeRem: number = 1.3;
-  @Input() widthRem: number = 12;
+  @Input() width = 'auto';
+  @Input() fontSizeRem: number = 1.6;
+  @Input() fontWeight: number = 400;
+  @Input() routerLink: string | null = null;
 
   @Output() onClick = new EventEmitter();
 }

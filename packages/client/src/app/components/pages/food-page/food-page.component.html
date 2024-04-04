@@ -41,7 +41,14 @@
         <p>Price: <span>{{ food.price | currency }}</span></p>
       </div>
 
-      <button (click)="addToCart()">Add to cart</button>
+      <app-default-button
+        (click)="addToCart()"
+        text="Add to cart"
+        routerLink="/checkout"
+        [fontSizeRem]="1.5"
+        [fontWeight]="500"
+        [width]="'100%'"
+      ></app-default-button>
     </div>
   </section>
 </div>
