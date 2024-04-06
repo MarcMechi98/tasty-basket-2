@@ -44,14 +44,23 @@
       </a>
     </nav>
 
-    <div #hamburgerMenu class="header__menu-icon" *ngIf="!isInLoginPage" (click)="toggleMenu()">
+    <div
+     #hamburgerMenu
+     class="header__menu-icon"
+     *ngIf="!isInLoginPage"
+     (click)="toggleMenu()"
+    >
       <fa-icon [icon]="faBars" *ngIf="!shouldShowDropdown"></fa-icon>
       <fa-icon [icon]="faX" *ngIf="shouldShowDropdown"></fa-icon>
     </div>
   </div>
 
   <!-- DROPDOWN HEADER -->
-  <div class="header__dropdown" [ngClass]="{ 'header__dropdown--open': shouldShowDropdown, 'header__dropdown--scrolled': isScrolledDown }" *ngIf="!isInLoginPage">
+  <div
+    class="header__dropdown"
+    [ngClass]="{ 'header__dropdown--open': shouldShowDropdown, 'header__dropdown--scrolled': isScrolledDown }"
+    *ngIf="!isInLoginPage"
+  >
     <ul *ngIf="!isLoggedIn">
       <li class="header__dropdown-item">
         <a routerLink="/login">Login/Register now!</a>

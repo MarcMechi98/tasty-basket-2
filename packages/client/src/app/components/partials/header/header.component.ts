@@ -1,17 +1,21 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { faArrowRightFromBracket, faBars, faShoppingCart, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { CartService } from './../../../services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user';
+import { BehaviorSubject, Observable, Subject, fromEvent, merge, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+
+  private readonly unsubscribeAll = new Subject<void>();
+
   public cartQuantity = 0;
   public user!: User;
   public isInLoginPage = false;
@@ -30,6 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   @ViewChild('hamburgerMenu') hamburgerMenu!: ElementRef;
+  @ViewChild('dropdownHeader') dropdownHeader!: ElementRef;
 
   constructor(
     private cartService: CartService,
@@ -38,17 +43,28 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.getCartObservable().subscribe(newCart => {
-      this.cartQuantity = newCart.totalCount
-    });
+    this.cartService.getCartObservable()
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(newCart => {
+        this.cartQuantity = newCart.totalCount
+      });
 
-    this.userService.user$.subscribe(user => this.user = user);
+    this.userService.user$
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(user => this.user = user);
 
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.isInLoginPage = event.url.includes('login');
-      }
-    })
+    this.router.events
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          this.isInLoginPage = event.url.includes('login');
+        }
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
   }
 
   get isLoggedIn(): boolean {
