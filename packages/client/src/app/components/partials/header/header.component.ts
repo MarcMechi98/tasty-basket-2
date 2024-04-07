@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { faArrowRightFromBracket, faBars, faShoppingCart, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 import { NavigationEnd, Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable, Subject, fromEvent, merge, takeUntil } fro
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private readonly unsubscribeAll = new Subject<void>();
 
@@ -62,6 +62,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
       })
   }
 
+  ngAfterViewInit(): void {
+    fromEvent(document, 'click')
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(({ target }) => {
+        this.manageDropdown(target);
+      });
+  }
+
+  private manageDropdown(targetClicked: any): void {
+    const clickedHamburgerMenu = this.hamburgerMenu.nativeElement.contains(targetClicked);
+    const clickedDropdownHeader = this.dropdownHeader.nativeElement.contains(targetClicked);
+
+    if (clickedHamburgerMenu) {
+      this.shouldShowDropdown = !this.shouldShowDropdown;
+      return;
+    }
+
+    if (!clickedHamburgerMenu && !clickedDropdownHeader) {
+      this.shouldShowDropdown = false;
+      return;
+    }
+  }
+
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
@@ -73,9 +96,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public logout(): void {
     this.userService.logout();
-  }
-
-  public toggleMenu(): void {
-    this.shouldShowDropdown = !this.shouldShowDropdown;
   }
 }
