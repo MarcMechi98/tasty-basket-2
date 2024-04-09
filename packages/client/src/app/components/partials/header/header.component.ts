@@ -5,7 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { CartService } from './../../../services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user';
-import { BehaviorSubject, Observable, Subject, fromEvent, merge, takeUntil } from 'rxjs';
+import { Subject, fromEvent, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -66,11 +66,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     fromEvent(document, 'click')
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({ target }) => {
-        this.manageDropdown(target);
+        this._manageDropdown(target);
       });
   }
 
-  private manageDropdown(targetClicked: any): void {
+  private _manageDropdown(targetClicked: any): void {
     const clickedHamburgerMenu = this.hamburgerMenu.nativeElement.contains(targetClicked);
     const clickedDropdownHeader = this.dropdownHeader.nativeElement.contains(targetClicked);
 

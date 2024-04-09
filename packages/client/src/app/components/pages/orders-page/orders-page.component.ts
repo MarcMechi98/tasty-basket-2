@@ -9,7 +9,9 @@ import { Order } from 'src/app/shared/models/order';
   styleUrl: './orders-page.component.scss'
 })
 export class OrdersPageComponent {
+
   public orders: Order[] = []
+
   constructor(
     private ordersService: OrderService,
     private userService: UserService

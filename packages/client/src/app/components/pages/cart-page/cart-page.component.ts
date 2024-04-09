@@ -35,8 +35,4 @@ export class CartPageComponent {
   public convertToNumber(value: string): number {
     return parseInt(value);
   }
-
-  public goToHomePage(): void {
-    this.router.navigateByUrl('/')
-  }
 }
