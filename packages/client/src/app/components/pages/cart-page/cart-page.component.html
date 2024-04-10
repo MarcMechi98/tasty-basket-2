@@ -14,11 +14,13 @@
             <div>
               <img [src]="cartItem.food.imageUrl" alt="Cart item food image" />
             </div>
+
             <div>
               <a routerLink="/food/{{ cartItem.food.id }}">
                 {{ cartItem.food.name }}
               </a>
             </div>
+
             <div>
               <select
                 #quantitySelector
