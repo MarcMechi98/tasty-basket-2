@@ -22,17 +22,25 @@
             </div>
 
             <div>
-              <select
-                #quantitySelector
-                [value]="cartItem.quantity"
-                (change)="changeQuantity(cartItem, convertToNumber(quantitySelector.value))"
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+              <div class="items__quantity-container">
+                <fa-icon
+                  *ngIf="cartItem.quantity > this.minimumQuantity"
+                  [icon]="faCaretLeft"
+                  aria-label="Decrease quantity"
+                  (click)="decreaseQuantity(cartItem)"
+                ></fa-icon>
+
+                <strong class="items__quantity-indicator">
+                  {{ cartItem.quantity }}
+                </strong>
+
+                <fa-icon
+                  *ngIf="cartItem.quantity < this.maximumQuantity"
+                  [icon]="faCaretRight"
+                  aria-label="Increase quantity"
+                  (click)="increaseQuantity(cartItem)"
+                ></fa-icon>
+              </div>
 
               <p>
                 {{ cartItem.food.price | currency }}
