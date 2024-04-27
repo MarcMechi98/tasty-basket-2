@@ -1,49 +1,84 @@
-.container {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 2rem 6rem 2rem;
-  flex-wrap: wrap;
+:host {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --label-color: #8597a3;
+  --border-color: #eee;
+  --focus-color: #665856;
+  --error-color: red;
 }
 
 .content {
-  width: 35rem;
-  margin-right: 3rem;
-}
-
-.content, form {
   display: flex;
   flex-direction: column;
-}
-
-form {
-  width: 100%;
-}
-
-.buttons-container {
-  flex-basis: 100%;
-  display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 1.8rem;
 
-  .buttons {
-    margin: 2rem;
-    width: 35rem;
+  form {
+    width: 100%;
   }
 
-  button {
-    color: white;
-    background-color: var(--vibrant-red);
-    width: 100%;
-    height: 3rem;
-    opacity: .8;
-    font-size: 1.3rem;
-    border: none;
-    border-radius: .5rem;
-    box-shadow: 2px 2px 2px 2px grey;
-    transition: all .1s ease-in-out;
+  .input {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    padding-top: 10px;
+    position: relative;
 
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
+    & + .input {
+      margin-top: 2rem;
     }
+  }
+
+  .input-label {
+    color: var(--label-color);
+    position: absolute;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    top: 5px;
+
+    &--empty {
+      top: 14px;
+    }
+  }
+
+  .input-field {
+    border: 0;
+    padding: 0;
+    z-index: 1;
+    background-color: transparent;
+    border-bottom: 2px solid var(--border-color);
+    font: inherit;
+    font-size: .9rem;
+    line-height: 30px;
+  }
+
+  .input-field:focus,
+  .input-field:valid {
+    outline: 0;
+    border-bottom-color: var(--focus-color);
+  }
+
+  .input-field:focus + .input-label,
+  .input-field:valid + .input-label {
+    color: var(--focus-color);
+    transform: translateY(-25px);
+  }
+
+  .input-error {
+    position: absolute;
+    font-size: .8rem;
+    color: var(--error-color);
+    left: 10rem;
+    bottom: .3rem;
+  }
+
+  &__map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 22rem;
   }
 }

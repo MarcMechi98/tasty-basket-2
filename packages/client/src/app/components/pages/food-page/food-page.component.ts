@@ -35,11 +35,16 @@ export class FoodPageComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribeAll)
     ).subscribe(food => {
       this.food = food;
+
+      if (!this.currentUserId) return;
+
       this.userService.getFavoritesFromUser(this.currentUserId).subscribe(favorites => {
         this.favoriteFoods = favorites;
         this.updateFavoriteProperty();
       });
     });
+
+    if (!this.currentUserId) return;
 
     this.debounceClick.pipe(
       debounceTime(300)

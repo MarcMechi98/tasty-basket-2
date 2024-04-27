@@ -3,7 +3,7 @@
   class="default-button"
   [ngStyle]="{ 'width': width, 'fontSize.rem': fontSizeRem, 'fontWeight': fontWeight }"
   [routerLink]="routerLink"
-  (click)="onClick.emit($event)"
+  (click)="onClick()"
 >
   {{ text }}
 </button>

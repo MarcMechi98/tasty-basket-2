@@ -24,12 +24,12 @@ export class MapComponent implements OnChanges {
     iconAnchor: [21, 42],
   });
 
-  map!: Map;
-  currentMarker!: Marker;
+  private map!: Map;
+  private currentMarker!: Marker;
 
   constructor(
     private locationService: LocationService,
-  ) { }
+  ) {}
 
   get addressLatLng(): LatLng {
     return this.order.addressLatLng!;
@@ -53,7 +53,7 @@ export class MapComponent implements OnChanges {
     }
   }
 
-  findMyLocation(): void {
+  public findMyLocation(): void {
     this.locationService.getCurrentLocation().subscribe({
       next: (latlng) => {
         this.setMarker(latlng);

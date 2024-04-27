@@ -2,7 +2,7 @@
   <div class="details">
     <app-title title="Login"></app-title>
 
-    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <app-text-input
         label="Email"
         type="email"
@@ -19,7 +19,7 @@
         [shouldDisplayErrors]="isSubmitted"
       ></app-text-input>
 
-      <app-default-button [text]="'Login'"></app-default-button>
+      <app-default-button [text]="'Login'" (buttonClick)="login()"></app-default-button>
     </form>
 
     <div class="register">

@@ -3,10 +3,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-default-button',
   templateUrl: './default-button.component.html',
-  styleUrl: './default-button.component.scss'
+  styleUrl: './default-button.component.scss',
 })
 export class DefaultButtonComponent {
-
   @Input() type: 'submit' | 'button' = 'button';
   @Input() text: string = 'Submit';
   @Input() width = 'auto';
@@ -14,5 +13,9 @@ export class DefaultButtonComponent {
   @Input() fontWeight: number = 400;
   @Input() routerLink: string | null = null;
 
-  @Output() onClick = new EventEmitter();
+  @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();
+
+  public onClick(): void {
+    this.buttonClick.emit();
+  }
 }

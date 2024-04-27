@@ -7,10 +7,9 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   loginForm!: FormGroup;
   isSubmitted = false;
   returnUrl: string = '';
@@ -20,30 +19,34 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
   }
 
-  get fc() { return this.loginForm.controls }
+  get fc() {
+    return this.loginForm.controls;
+  }
 
-  public submit(): void {
+  public login(): void {
     this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return;
     }
 
-    this.userService.login({
-      email: this.fc['email'].value,
-      password: this.fc['password'].value
-    }).subscribe(() => {
-      this.router.navigateByUrl(this.returnUrl);
-    })
+    this.userService
+      .login({
+        email: this.fc['email'].value,
+        password: this.fc['password'].value,
+      })
+      .subscribe(() => {
+        this.router.navigateByUrl(this.returnUrl);
+      });
   }
 }

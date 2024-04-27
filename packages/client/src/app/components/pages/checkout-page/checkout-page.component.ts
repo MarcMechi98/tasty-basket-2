@@ -14,8 +14,10 @@ import { Order } from 'src/app/shared/models/order';
   styleUrl: './checkout-page.component.scss'
 })
 export class CheckoutPageComponent implements OnInit {
-  order: Order = new Order();
-  checkoutForm!: FormGroup;
+  public order: Order = new Order();
+  public checkoutForm!: FormGroup;
+  public nameInputFocused = false;
+  public addressInputFocused = false;
 
   constructor(
     cartService: CartService,
@@ -43,14 +45,14 @@ export class CheckoutPageComponent implements OnInit {
     return this.checkoutForm.controls;
   }
 
-  createOrder(): void {
+  public createOrder(): void {
     if (this.checkoutForm.invalid) {
-      this.toastrService.warning('Please fill in all fields', 'Warning');
+      this.toastrService.warning('Please answer all required fields', 'Warning');
       return;
     }
 
     if (!this.order.addressLatLng) {
-      this.toastrService.warning('Please select address from dropdown', 'Warning');
+      this.toastrService.warning('Please find you location on the map', 'Warning');
       return;
     }
 

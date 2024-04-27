@@ -53,24 +53,24 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(user => this.user = user);
 
-    this.router.events
+    /* this.router.events
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(event => {
         if (event instanceof NavigationEnd) {
           this.isInLoginPage = event.url.includes('login');
         }
-      })
+      }) */
   }
 
   ngAfterViewInit(): void {
     fromEvent(document, 'click')
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({ target }) => {
-        this._manageDropdown(target);
+        this.manageDropdown(target);
       });
   }
 
-  private _manageDropdown(targetClicked: any): void {
+  private manageDropdown(targetClicked: any): void {
     const clickedHamburgerMenu = this.hamburgerMenu.nativeElement.contains(targetClicked);
     const clickedDropdownHeader = this.dropdownHeader.nativeElement.contains(targetClicked);
 

@@ -1,27 +1,32 @@
-<div class="container">
+<div class="checkout">
+  <app-title title="Order Details" fontSize="1.6rem"></app-title>
+
   <div class="content">
-    <app-title title="Order Details" fontSize="1.6rem"></app-title>
     <form [formGroup]="checkoutForm">
-      <app-text-input [control]="fc['name']" label="Name" placeholder="Enter your name"></app-text-input>
-      <app-text-input [control]="fc['address']" label="Address" placeholder="Enter your address"></app-text-input>
+      <div class="input">
+        <input type="text" class="input-field" formControlName="name" required (focus)="nameInputFocused=true" (blur)="nameInputFocused=false"/>
+        <label class="input-label" [class.input-label--empty]="!checkoutForm.get('name')?.value && !nameInputFocused">Name</label>
+        <p class="input-error" *ngIf="!nameInputFocused && !checkoutForm.get('name')?.value">This field is mandatory</p>
+      </div>
+      <div class="input">
+        <input type="text" class="input-field" formControlName="address" required (focus)="addressInputFocused=true" (blur)="addressInputFocused=false"/>
+        <label class="input-label" [class.input-label--empty]="!checkoutForm.get('address')?.value && !addressInputFocused">Address</label>
+        <p class="input-error" *ngIf="!addressInputFocused && !checkoutForm.get('address')?.value">This field is mandatory</p>
+      </div>
     </form>
+
     <app-order-items-list [order]="order"></app-order-items-list>
-  </div>
 
-  <div class="map">
-    <app-title
-      title="Select your address on the map"
-      fontSize="1.6rem"
-    ></app-title>
-
-    <app-map [order]="order"></app-map>
-  </div>
-
-  <div class="buttons-container">
-    <div class="buttons">
-      <button (click)="createOrder()">
-        Proceed to checkout
-      </button>
+    <div class="content__map">
+      <h2>Select your address on the map</h2>
+      <app-map [order]="order"></app-map>
     </div>
+
+    <app-default-button
+      text="Proceed to payment"
+      [fontSizeRem]="1"
+      (click)="createOrder()"
+      [width]="'100%'"
+    ></app-default-button>
   </div>
 </div>

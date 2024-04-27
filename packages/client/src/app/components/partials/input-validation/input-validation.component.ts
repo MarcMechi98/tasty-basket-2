@@ -6,15 +6,15 @@ const VALIDATION_ERROR_MESSAGES: any = {
   email: 'Email is not valid',
   minlength: 'Should be at least 8 characters',
   maxlength: 'Should be less than 20 characters',
-  passwordsDontMatch: 'Passwords do not match'
-}
+  passwordsDontMatch: 'Passwords do not match',
+};
 
 @Component({
   selector: 'app-input-validation',
   templateUrl: './input-validation.component.html',
-  styleUrl: './input-validation.component.scss'
+  styleUrl: './input-validation.component.scss',
 })
-export class InputValidationComponent implements OnInit, OnChanges{
+export class InputValidationComponent implements OnInit, OnChanges {
   @Input() control!: AbstractControl;
   @Input() shouldDisplayError!: boolean;
 
@@ -34,7 +34,7 @@ export class InputValidationComponent implements OnInit, OnChanges{
     });
   }
 
-  checkValidation(): void {
+  private checkValidation(): void {
     const errors = this.control.errors;
 
     if (!errors) {
@@ -43,6 +43,6 @@ export class InputValidationComponent implements OnInit, OnChanges{
     }
 
     const errorKeys = Object.keys(errors);
-    this.errorMessages = errorKeys.map(key => VALIDATION_ERROR_MESSAGES[key]);
+    this.errorMessages = errorKeys.map((key) => VALIDATION_ERROR_MESSAGES[key]);
   }
 }

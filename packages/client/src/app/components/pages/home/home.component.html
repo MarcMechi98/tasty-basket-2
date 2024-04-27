@@ -1,4 +1,9 @@
 <div class="home">
+  <!-- <img
+    src="../../../../assets/images/pexels-ella-olsson-572949-1640773.jpg"
+    alt=""
+    class="home__hero-image"
+  /> -->
   <app-search-bar></app-search-bar>
   <app-tags></app-tags>
   <app-not-found
@@ -6,7 +11,6 @@
     message="No foods found!"
     resetLinkText="Try searching for something else"
   ></app-not-found>
-
   <ul *ngIf="foods && foods.length" class="home__food-cards">
     <li *ngFor="let food of foods" class="home__card">
       <a routerLink="/food/{{ food.id }}">
@@ -16,7 +20,10 @@
             <p class="content__food-name">
               {{ food.name }}
             </p>
-            <span class="content__heart-icon" [ngClass]="{ 'content__heart-icon--favorite': food.isFavorite }">
+            <span
+              class="content__heart-icon"
+              [ngClass]="{ 'content__heart-icon--favorite': food.isFavorite }"
+            >
               ❤
             </span>
           </div>

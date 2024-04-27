@@ -1,8 +1,7 @@
 <header class="header">
   <div
     class="header__main"
-    [ngClass]="{ 'header__main--with-shadow': !shouldShowDropdown, 'header__main--scrolled': isScrolledDown}"
-  >
+    [ngClass]="{ 'header__main--with-shadow': !shouldShowDropdown, 'header__main--scrolled': isScrolledDown}">
     <div class="header__brand">
       <img src="../../../../assets/images/tasty-logo.png" alt="Brand logo">
       <a routerLink="/">Tasty Basket</a>
@@ -58,9 +57,7 @@
   <div
     #dropdownHeader
     class="header__dropdown"
-    [ngClass]="{ 'header__dropdown--open': shouldShowDropdown, 'header__dropdown--scrolled': isScrolledDown }"
-    *ngIf="!isInLoginPage"
-  >
+    [ngClass]="{ 'header__dropdown--open': shouldShowDropdown, 'header__dropdown--scrolled': isScrolledDown }">
     <ul *ngIf="!isLoggedIn">
       <li class="header__dropdown-item">
         <a routerLink="/login">Login/Register now!</a>
