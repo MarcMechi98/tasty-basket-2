@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart.service';
@@ -41,8 +41,12 @@ export class CheckoutPageComponent implements OnInit {
     });
   }
 
-  get fc() {
-    return this.checkoutForm.controls;
+  get nameFormControl(): FormControl {
+    return this.checkoutForm.get('name') as FormControl;
+  }
+
+  get addressFormControl(): FormControl {
+    return this.checkoutForm.get('address') as FormControl;
   }
 
   public createOrder(): void {
@@ -56,8 +60,8 @@ export class CheckoutPageComponent implements OnInit {
       return;
     }
 
-    this.order.name = this.fc['name'].value;
-    this.order.address = this.fc['address'].value;
+    this.order.name = this.nameFormControl.value;
+    this.order.address = this.addressFormControl.value;
 
     this.orderService.create(this.order).subscribe({
       next: () => {

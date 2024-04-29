@@ -3,16 +3,18 @@
 
   <div class="content">
     <form [formGroup]="checkoutForm">
-      <div class="input">
-        <input type="text" class="input-field" formControlName="name" required (focus)="nameInputFocused=true" (blur)="nameInputFocused=false"/>
-        <label class="input-label" [class.input-label--empty]="!checkoutForm.get('name')?.value && !nameInputFocused">Name</label>
-        <p class="input-error" *ngIf="!nameInputFocused && !checkoutForm.get('name')?.value">This field is mandatory</p>
-      </div>
-      <div class="input">
-        <input type="text" class="input-field" formControlName="address" required (focus)="addressInputFocused=true" (blur)="addressInputFocused=false"/>
-        <label class="input-label" [class.input-label--empty]="!checkoutForm.get('address')?.value && !addressInputFocused">Address</label>
-        <p class="input-error" *ngIf="!addressInputFocused && !checkoutForm.get('address')?.value">This field is mandatory</p>
-      </div>
+      <app-new-text-input
+        type="text"
+        [control]="nameFormControl"
+        errorMessage="this field is mandatory"
+        label="Name"
+      ></app-new-text-input>
+      <app-new-text-input
+        type="text"
+        [control]="addressFormControl"
+        errorMessage="this field is mandatory"
+        label="Address"
+      ></app-new-text-input>
     </form>
 
     <app-order-items-list [order]="order"></app-order-items-list>

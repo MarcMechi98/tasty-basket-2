@@ -41,6 +41,7 @@ import { ArraySpacePipe } from './shared/pipes/array-space.pipe';
 import { AddressFormComponent } from './components/partials/address-form/address-form.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
 import { FaqComponent } from './components/partials/faq/faq.component';
+import { NewTextInputComponent } from './components/partials/new-text-input/new-text-input.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { FaqComponent } from './components/partials/faq/faq.component';
     ArraySpacePipe,
     AddressFormComponent,
     FooterComponent,
-    FaqComponent
+    FaqComponent,
+    NewTextInputComponent
   ],
   imports: [
     BrowserModule,

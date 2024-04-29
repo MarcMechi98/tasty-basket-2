@@ -1,0 +1,12 @@
+<div class="input">
+  <input
+    [type]="type"
+    [formControl]="control"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    class="input-field"
+    required
+  />
+  <label class="input-label" [class.input-label--empty]="control.value && !isFocused">{{ label }}</label>
+  <p class="input-error" *ngIf="!isFocused && !control.value">{{ errorMessage }}</p>
+</div>
