@@ -9,6 +9,7 @@
     height: 3rem;
     width: 20rem;
     background-color: var(--darker-grey);
+    opacity: .9;
     padding: 1.2rem;
     font-size: 1rem;
     font-weight: 500;
@@ -17,20 +18,20 @@
 
   button {
     color: grey;
+    font-weight: 500;
     height: 3rem;
     width: 5rem;
     font-size: 1rem;
     border-radius: 0 10rem 10rem 0;
-    background-color: var(--vibrant-red);
+    background-color: #EA3E3E;
     color: white;
-    opacity: .8;
     outline: none;
     border: none;
-    transition: all .2s ease-in-out;
+    transition: background-color .2s ease-in-out;
 
     &:hover {
-      opacity: 1;
       cursor: pointer;
+      background-color: #DB1A1A;
     }
   }
 }

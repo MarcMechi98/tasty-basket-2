@@ -4,11 +4,12 @@
   justify-content: center;
 
   a {
-    background-color: var(--default-white);
+    background-color: var(--darker-grey);
+    opacity: .9;
     padding: .3rem .5rem;
     margin: .2rem .15rem;
     border-radius: 10rem;
     font-weight: 600;
-    color: var(--dark-brown);
+    color: var(--light-black);
   }
 }

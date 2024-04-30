@@ -1,22 +1,20 @@
 /* MOBILE SIZE */
 main {
-  position: relative;
-  margin: 0 auto 3rem auto;
-  max-width: 90%;
-  min-height: 100%;
-  padding-top: 8.5rem;
+  margin-bottom: 3rem;
+  min-height: 100dvh;
+  padding-top: 7rem;
 }
 
 /* TABLET SIZE */
-@media only screen and (min-width: 620px) {
+/* @media only screen and (min-width: 620px) {
   main {
     max-width: 80vw;
   }
-}
+} */
 
 /* DESKTOP SIZE */
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   main {
     max-width: 85vw;
   }
-}
+} */
