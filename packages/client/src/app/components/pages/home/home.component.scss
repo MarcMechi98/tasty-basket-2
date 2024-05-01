@@ -20,19 +20,29 @@
     }
   }
 
-  &__food-cards {
-    display: flex;
+  .faq {
+    background-color: var(--light-grey);
+    display: block;
     padding: 3rem 0;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
+
+    &__container {
+      margin: 0 auto;
+      max-width: 90%;
+    }
+  }
+
+  &__food-cards {
+    margin: 0 auto;
+    display: grid;
+    width: 90%;
+    padding: 3rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
   }
 
   &__card {
     a {
-      height: 23rem;
-      width: 20rem;
+      height: 24rem;
       border: 1px solid whitesmoke;
       border-radius: 1rem;
       display: flex;
@@ -48,73 +58,76 @@
       }
     }
   }
-}
 
-.content {
-  padding: 0 1rem 0.5rem 1rem;
-  height: fit-content;
+  .content {
+    padding: 1rem 1rem .6rem 1rem;
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__food-name {
-    font-weight: 600;
-  }
-
-  &__heart-icon {
-    font-size: 1.2rem;
-    color: grey;
-
-    &--favorite {
-      color: var(--vibrant-red);
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-  }
 
-  &__stars {
-    margin: 0.5rem 0;
-  }
+    &__food-name {
+      font-weight: 600;
+    }
 
-  &__origin-and-time {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__origins {
-    flex: 9;
-
-    span {
-      border-radius: 2rem;
+    &__heart-icon {
+      font-size: 1.2rem;
       color: grey;
-      background-color: whitesmoke;
-      display: inline-block;
-      font-size: 0.8rem;
-      margin-right: 0.3rem;
-      padding: 0 0.5rem;
-      margin-top: 0.2rem;
+
+      &--favorite {
+        color: var(--vibrant-red);
+      }
     }
-  }
 
-  &__cooking-time {
-    flex: 3;
-    text-align: end;
-    font-size: 0.7rem;
-    font-weight: 600;
-  }
+    &__stars-and-time {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+    }
 
-  &__price {
-    color: var(--dark-grey);
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 10px;
+    &__cooking-time {
+      flex: 3;
+      text-align: end;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    &__origins {
+      flex: 9;
+
+      span {
+        border-radius: 2rem;
+        color: grey;
+        background-color: whitesmoke;
+        display: inline-block;
+        font-size: 0.8rem;
+        margin-right: 0.3rem;
+        padding: 0 0.5rem;
+        margin-top: 0.2rem;
+      }
+    }
+
+    &__price {
+      color: var(--dark-grey);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: .5rem;
+    }
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .home {
+    .content {
+      &__cooking-time {
+        font-size: .7rem;
+      }
+    }
+
     &__card {
       a {
         &:hover {
@@ -124,7 +137,7 @@
         }
 
         img {
-          opacity: 0.8;
+          opacity: 0.9;
           transition: opacity 0.3s ease-in-out;
         }
       }

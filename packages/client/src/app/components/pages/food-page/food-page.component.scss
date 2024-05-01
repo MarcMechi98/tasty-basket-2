@@ -1,7 +1,7 @@
 .food-page {
-  width: 100%;
-  height: 100%;
-  margin: 2rem auto 2rem auto;
+  padding: 2rem 0;
+  max-width: 90vw;
+  margin: 0 auto;
 }
 
 .food-container {
@@ -143,10 +143,15 @@
   }
 }
 
+@media only screen and (min-width: 620px) {
+  .food-page {
+    max-width: 80vw;
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   .food-page {
-    margin: 2rem auto 6rem auto;
-    max-width: 50%;
+    max-width: 50vw;
   }
 
   .food-container {

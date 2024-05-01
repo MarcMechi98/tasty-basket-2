@@ -22,24 +22,23 @@
             <span
               class="content__heart-icon"
               [ngClass]="{ 'content__heart-icon--favorite': food.isFavorite }"
-            >
-              ❤
-            </span>
+            >❤</span>
           </div>
-          <div class="content__stars">
+
+          <div class="content__stars-and-time">
             <app-star-rating [stars]="food.stars"></app-star-rating>
-          </div>
-          <div class="content__origin-and-time">
-            <div class="content__origins">
-              <span *ngFor="let origin of food.origins">
-                {{ origin }}
-              </span>
-            </div>
             <div class="content__cooking-time">
               <span>🕒</span>
               {{ food.cookingTime }} min
             </div>
           </div>
+
+          <div class="content__origins">
+            <span *ngFor="let origin of food.origins">
+              {{ origin }}
+            </span>
+          </div>
+
           <p class="content__price">
             {{ food.price | currency }}
           </p>
@@ -48,5 +47,9 @@
     </li>
   </ul>
 
-  <app-faq></app-faq>
+  <section class="faq">
+    <div class="faq__container">
+      <app-faq></app-faq>
+    </div>
+  </section>
 </div>
