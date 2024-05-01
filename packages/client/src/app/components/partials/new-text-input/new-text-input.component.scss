@@ -37,7 +37,7 @@
 
   .input-field:focus + .input-label,
   .input-field:valid + .input-label {
-    color: var(--focus-color);
+    color: black;
     transform: translateY(-25px);
   }
 

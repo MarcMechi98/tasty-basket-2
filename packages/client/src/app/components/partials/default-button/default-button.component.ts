@@ -10,7 +10,6 @@ export class DefaultButtonComponent {
   @Input() text: string = 'Submit';
   @Input() width = 'auto';
   @Input() fontSizeRem: number = 1.6;
-  @Input() fontWeight: number = 400;
   @Input() routerLink: string | null = null;
 
   @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();

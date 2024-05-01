@@ -2,27 +2,32 @@
   <app-title title="Order Details" fontSize="1.6rem"></app-title>
 
   <div class="content">
-    <form [formGroup]="checkoutForm">
-      <app-new-text-input
-        type="text"
-        [control]="nameFormControl"
-        errorMessage="this field is mandatory"
-        label="Name"
-      ></app-new-text-input>
-      <app-new-text-input
-        type="text"
-        [control]="addressFormControl"
-        errorMessage="this field is mandatory"
-        label="Address"
-      ></app-new-text-input>
-    </form>
+    <section class="content__form">
+      <form [formGroup]="checkoutForm">
+        <app-new-text-input
+          type="text"
+          [control]="nameFormControl"
+          errorMessage="this field is mandatory"
+          label="Name"
+        ></app-new-text-input>
+        <app-new-text-input
+          type="text"
+          [control]="addressFormControl"
+          errorMessage="this field is mandatory"
+          label="Address"
+        ></app-new-text-input>
+      </form>
+    </section>
 
-    <app-order-items-list [order]="order"></app-order-items-list>
+    <section class="content__order-list">
+      <h2 class="content__header">Order items</h2>
+      <app-order-items-list [order]="order"></app-order-items-list>
+    </section>
 
-    <div class="content__map">
-      <h2>Select your address on the map</h2>
+    <section class="content__map">
+      <h2 class="content__header">Select your address</h2>
       <app-map [order]="order"></app-map>
-    </div>
+    </section>
 
     <app-default-button
       text="Proceed to payment"

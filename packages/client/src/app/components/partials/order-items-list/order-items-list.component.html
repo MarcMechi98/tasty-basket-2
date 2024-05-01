@@ -1,10 +1,4 @@
 <table>
-  <tr>
-    <td colspan="5">
-      <h3>Order Items</h3>
-    </td>
-  </tr>
-
   <tr *ngFor="let item of order.items">
     <td class="food-item">
       <a routerLink="/food/{{ item.food.id }}">
