@@ -50,7 +50,7 @@
       justify-content: space-between;
       overflow: hidden;
       color: var(--vibrant-red);
-      box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+      box-shadow: var(--default-box-shadow);
 
       img {
         height: 14.5rem;
