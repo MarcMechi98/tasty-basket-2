@@ -23,7 +23,7 @@
   .faq {
     background-color: var(--light-grey);
     display: block;
-    padding: 3rem 0;
+    padding: 4rem 0 5rem 0;
 
     &__container {
       margin: 0 auto;
@@ -33,11 +33,11 @@
 
   &__food-cards {
     margin: 0 auto;
-    display: grid;
     width: 90%;
-    padding: 3rem 0;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 4rem 0;
+    display: grid;
     gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 
   &__card {

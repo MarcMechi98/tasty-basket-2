@@ -2,12 +2,11 @@
 
 :root {
   --primary-color: #af1313;
-  --light-brown: #654321;
-  --dark-brown: #3B170B;
   --vibrant-red: #e72727;
   --default-white: #fff;
   --light-grey: #f7f7f7;
   --light-black: #333;
+  --black: #1A1919;
   --darker-grey: #f1f1f1;
   --table-border-color: #ffbbbb;
   --table-light-grey: #e4e4e4;
@@ -22,15 +21,7 @@ p, a, ul, li, h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: -webkit-fill-available;
-}
 
-body {
-  min-height: 100vh;
-}
 
 ul, li {
   list-style-type: none;
@@ -44,12 +35,10 @@ ul, li {
 
 /* BASE MOBILE SIZE STYLES */
 html {
-  font-size: 16px;
   line-height: 1.5;
 }
 
 body {
-  position: relative;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;

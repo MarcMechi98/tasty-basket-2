@@ -1,8 +1,8 @@
 @import '../../../../scss/_mixins.scss';
 
 :host {
-  --light-peach: #ffdddd;
-  --darker-peach: #fdcece;
+  --light-peach: #fce8e8;
+  --darker-peach: #ffdddd;
   --brand-color: hsla( 355, 75%, 56%, 1 );
 }
 
@@ -54,7 +54,7 @@
     display: block;
     align-self: center;
     justify-self: end;
-    color: var(--dark-brown);
+    color: var(--black);
     font-size: 1.5rem;
     cursor: pointer;
   }
@@ -106,7 +106,7 @@
     gap: 5px;
 
     a {
-      color: var(--dark-brown);
+      color: var(--black);
       font-weight: 600;
       font-size: 1.1rem;
       position: relative;
@@ -183,7 +183,7 @@
     }
 
     &__options-text {
-      color: var(--dark-brown);
+      color: var(--black);
       position: relative;
       font-weight: 600;
 
@@ -199,7 +199,7 @@
         left:  0;
         bottom: 0;
         width: 0;
-        background-color: var(--dark-brown);
+        background-color: var(--black);
         transition: width 0.2s;
       }
 
@@ -213,7 +213,7 @@
 
       fa-icon {
         position: relative;
-        color: var(--dark-brown);
+        color: var(--black);
         top: 2px;
       }
     }
@@ -242,7 +242,7 @@
       align-self: center;
 
       a {
-        color: var(--dark-brown);
+        color: var(--black);
         font-size: .9rem;
         position: relative;
 
@@ -258,7 +258,7 @@
           left:  0;
           bottom: 0;
           width: 0;
-          background-color: var(--dark-brown);
+          background-color: var(--black);
           transition: width 0.2s;
         }
 
@@ -280,7 +280,7 @@
       color: var(--light-brown);
 
       &:hover {
-        color: var(--dark-brown);
+        color: var(--black);
         cursor: pointer;
       }
     }
