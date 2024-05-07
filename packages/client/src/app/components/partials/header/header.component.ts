@@ -53,14 +53,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(user => this.user = user);
 
-    this.router.events
+    /* this.router.events
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(event => {
         this.shouldShowDropdown = false;
         if (event instanceof NavigationEnd) {
           this.isInLoginPage = event.url.includes('login');
         }
-      })
+      }) */
   }
 
   ngAfterViewInit(): void {

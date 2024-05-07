@@ -38,7 +38,7 @@ export class FoodPageComponent implements OnInit, OnDestroy {
 
       if (!this.currentUserId) return;
 
-      this.userService.getFavoritesFromUser(this.currentUserId).subscribe(favorites => {
+      this.userService.getFavoritesFromUser$(this.currentUserId).subscribe(favorites => {
         this.favoriteFoods = favorites;
         this.updateFavoriteProperty();
       });
@@ -50,7 +50,7 @@ export class FoodPageComponent implements OnInit, OnDestroy {
       debounceTime(300)
     ).subscribe(() => {
       const action = this.food.isFavorite ? 'remove' : 'add';
-      this.userService.updateFavorite(this.currentUserId, this.food.id, action).subscribe(() => {
+      this.userService.updateFavorite$(this.currentUserId, this.food.id, action).subscribe(() => {
         this.food.isFavorite = !this.food.isFavorite;
       });
     });

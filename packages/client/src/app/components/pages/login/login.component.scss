@@ -1,0 +1,50 @@
+.login {
+  padding: 8rem 0 12rem 0;
+  max-width: 90vw;
+  margin: 0 auto;
+  color: #515a6e;
+}
+
+.card {
+  padding: 1.5rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: var(--default-box-shadow);
+
+  &__title {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
+
+  &__title-info {
+    font-size: .8rem;
+    font-weight: 500;
+  }
+
+  &__form {
+    padding: 2rem 0;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  &__button-wrapper {
+    padding-top: .5em;
+  }
+
+  &__register {
+    font-size: .9rem;
+  }
+}
+
+@media only screen and (min-width: 620px) {
+  .login {
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .login {
+    max-width: 30%;
+  }
+}

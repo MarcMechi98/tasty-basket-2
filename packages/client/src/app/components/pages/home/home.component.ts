@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const currentUserId = this.userService.currentUser.id;
 
     if (currentUserId) {
-      this.userService.getFavoritesFromUser(currentUserId).subscribe(favorites => {
+      this.userService.getFavoritesFromUser$(currentUserId).subscribe(favorites => {
         this.favoriteFoods = favorites;
         this.updateFavoriteProperty();
       });

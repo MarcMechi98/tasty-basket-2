@@ -3,7 +3,6 @@
     flex-direction: column-reverse;
     position: relative;
     padding-top: 10px;
-    position: relative;
 
     & + .input {
       margin-top: 2rem;
@@ -13,20 +12,23 @@
     color: var(--label-color);
     position: absolute;
     transition: all 0.3s;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     top: 12px;
   }
 
   .input-field {
-    border: 0;
+    border: none;
     padding: 0;
     z-index: 1;
     background-color: transparent;
-    border-bottom: 2px solid var(--border-color);
-    font: inherit;
+    border-bottom: 2px solid #eee;
     font-size: .9rem;
     line-height: 30px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .input-field:focus,
@@ -43,10 +45,24 @@
 
   .input-error {
     position: absolute;
-    font-size: .8rem;
+    font-size: .9rem;
+    font-style: italic;
     color: var(--error-color);
     left: 10rem;
     bottom: .3rem;
+    color: red;
+  }
+
+  fa-icon {
+    position: absolute;
+    right: 0;
+    bottom: .2rem;
+    z-index: 2;
+    font-size: 1.2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -54,6 +70,14 @@
   .input {
     .input-label {
       top: 5px;
+    }
+
+    .input-error {
+      bottom: .1rem;
+    }
+
+    fa-icon {
+      bottom: 0;
     }
   }
 }

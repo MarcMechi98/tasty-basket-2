@@ -33,7 +33,7 @@ export class ProfilePageComponent implements OnInit{
 
     const currentUserId = this.userService.currentUser.id;
 
-    this.userService.getFavoritesFromUser(currentUserId).subscribe(favorites => {
+    this.userService.getFavoritesFromUser$(currentUserId).subscribe(favorites => {
       this.favoriteFoods = favorites;
     });
 

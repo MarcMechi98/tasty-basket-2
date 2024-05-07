@@ -75,11 +75,11 @@ export class UserService {
     window.location.reload();
   }
 
-  public updateFavorite(userId: string, foodId: string, action: 'add' | 'remove'): Observable<User> {
+  public updateFavorite$(userId: string, foodId: string, action: 'add' | 'remove'): Observable<User> {
     return this.http.post<User>(USERS_BASE_URL + userId + '/favorites', { foodId, action });
   }
 
-  public getFavoritesFromUser(userId: string): Observable<Food[]> {
+  public getFavoritesFromUser$(userId: string): Observable<Food[]> {
     return this.http.get<Food[]>(USERS_BASE_URL + userId + '/favorites');
   }
 

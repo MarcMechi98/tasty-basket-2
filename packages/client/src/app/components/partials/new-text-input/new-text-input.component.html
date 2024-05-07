@@ -8,5 +8,8 @@
     required
   />
   <label class="input-label" [class.input-label--empty]="control.value && !isFocused">{{ label }}</label>
-  <p class="input-error" *ngIf="!isFocused && !control.value">{{ errorMessage }}</p>
+
+  <p class="input-error" *ngIf="control.touched && !control.value">{{ errorMessage }}</p>
+  <fa-icon [icon]="faEyeSlash" *ngIf="displayEye && type === 'password'" (click)="onEyeIconClick()"></fa-icon>
+  <fa-icon [icon]="faEye" *ngIf="displayEye && type === 'text'" (click)="onEyeIconClick()"></fa-icon>
 </div>
