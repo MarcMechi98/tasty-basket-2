@@ -1,4 +1,4 @@
-.login {
+.container {
   padding: 8rem 0 12rem 0;
   max-width: 90vw;
   margin: 0 auto;
@@ -29,22 +29,26 @@
   }
 
   &__button-wrapper {
-    padding-top: .5em;
+    padding-top: .5rem;
   }
 
   &__register {
     font-size: .9rem;
+
+    a {
+      font-weight: 500;
+    }
   }
 }
 
 @media only screen and (min-width: 620px) {
-  .login {
+  .container {
     max-width: 50%;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .login {
+  .container {
     max-width: 30%;
   }
 }

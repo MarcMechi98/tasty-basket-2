@@ -45,16 +45,12 @@ export class LoginComponent implements OnInit {
     this.isSubmitted = true;
 
     this.userService
-      .login({
+      .login$({
         email: this.emailFormControl.value,
         password: this.passwordFormControl.value,
       })
       .subscribe(() => {
         this.router.navigateByUrl(this.returnUrl);
       });
-  }
-
-  public switchPasswordVisibility(): void {
-    this.shouldShowPassword = !this.shouldShowPassword;
   }
 }

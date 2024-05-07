@@ -1,47 +1,78 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { UserService } from 'src/app/services/user.service';
-import { PasswordMatchValidator } from 'src/app/shared/validators/password_match_validator';
+import { PasswordMatchValidator } from 'src/app/shared/validators/password-match-validator';
 import { UserRegistrationInput } from 'src/app/shared/interfaces/UserRegistration';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.scss'
+  styleUrl: './register-page.component.scss',
 })
-export class RegisterPageComponent implements OnInit{
+export class RegisterPageComponent implements OnInit {
+  public registrationForm!: FormGroup;
+  public isSubmitted = false;
+  public returnUrl = '';
 
-  registrationForm!: FormGroup;
-  isSubmitted = false;
-  returnUrl = '';
+  public shouldShowPassword = false;
+  public shouldShowPasswordConfirmation = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.registrationForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-      confirmPassword: ['', [Validators.required]],
-      address: ['', Validators.required],
-    }, {
-      validators: [PasswordMatchValidator('password', 'confirmPassword')]
-    });
+    this.registrationForm = this.formBuilder.group(
+      {
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(20),
+          ],
+        ],
+        confirmPassword: ['', [Validators.required]],
+        address: ['', Validators.required],
+      },
+      {
+        validators: [PasswordMatchValidator('password', 'confirmPassword')],
+      }
+    );
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
   }
 
-  get fc() { return this.registrationForm.controls }
+  get nameFormControl(): FormControl {
+    return this.registrationForm.get('name') as FormControl;
+  }
 
-  public async onSubmit(): Promise<void> {
+  get emailFormControl(): FormControl {
+    return this.registrationForm.get('email') as FormControl;
+  }
+
+  get passwordFormControl(): FormControl {
+    return this.registrationForm.get('password') as FormControl;
+  }
+
+  get confirmPasswordFormControl(): FormControl {
+    return this.registrationForm.get('confirmPassword') as FormControl;
+  }
+
+  get addressFormControl(): FormControl {
+    return this.registrationForm.get('address') as FormControl;
+  }
+
+  public async register(): Promise<void> {
+    console.log(this.registrationForm)
     this.isSubmitted = true;
 
     if (this.registrationForm.invalid) {
@@ -49,12 +80,12 @@ export class RegisterPageComponent implements OnInit{
     }
 
     const user: UserRegistrationInput = {
-      name: this.fc['name'].value,
-      email: this.fc['email'].value,
-      password: this.fc['password'].value,
-      confirmPassword: this.fc['confirmPassword'].value,
-      address: this.fc['address'].value
-    }
+      name: this.nameFormControl.value,
+      email: this.emailFormControl.value,
+      password: this.passwordFormControl.value,
+      confirmPassword: this.confirmPasswordFormControl.value,
+      address: this.addressFormControl.value,
+    };
 
     try {
       await firstValueFrom(this.userService.register(user));

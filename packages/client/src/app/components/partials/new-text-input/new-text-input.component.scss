@@ -15,6 +15,14 @@
     font-size: 1.2rem;
     font-weight: 500;
     top: 12px;
+
+    &--required {
+      &::after {
+        content: '*';
+        color: red;
+        margin-left: 0.2rem;
+      }
+    }
   }
 
   .input-field {
@@ -45,12 +53,10 @@
 
   .input-error {
     position: absolute;
-    font-size: .9rem;
-    font-style: italic;
-    color: var(--error-color);
-    left: 10rem;
-    bottom: .3rem;
+    font-size: .8rem;
+    top: 2.5rem;
     color: red;
+    font-weight: 500;
   }
 
   fa-icon {
@@ -78,6 +84,11 @@
 
     fa-icon {
       bottom: 0;
+    }
+
+    .input-error {
+      font-size: .7rem;
+      top: 2.2rem;
     }
   }
 }

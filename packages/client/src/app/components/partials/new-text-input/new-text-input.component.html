@@ -7,9 +7,9 @@
     class="input-field"
     required
   />
-  <label class="input-label" [class.input-label--empty]="control.value && !isFocused">{{ label }}</label>
+  <label class="input-label" [class.input-label--required]="displayAsterisk">{{ label }}</label>
 
-  <p class="input-error" *ngIf="control.touched && !control.value">{{ errorMessage }}</p>
+  <small class="input-error" *ngIf="control.touched">{{ errorToBeDisplayed }}</small>
   <fa-icon [icon]="faEyeSlash" *ngIf="displayEye && type === 'password'" (click)="onEyeIconClick()"></fa-icon>
   <fa-icon [icon]="faEye" *ngIf="displayEye && type === 'text'" (click)="onEyeIconClick()"></fa-icon>
 </div>

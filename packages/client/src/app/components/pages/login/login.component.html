@@ -1,31 +1,28 @@
-<div class="login">
+<div class="container">
   <div class="card">
     <h1 class="card__title">Login to your account</h1>
     <p class="card__title-info">Project by <strong>Marcelo Mechi</strong></p>
 
     <form class="card__form" [formGroup]="loginForm" (ngSubmit)="login()">
         <app-new-text-input
-          type="text"
           [control]="emailFormControl"
-          errorMessage="Required"
           label="Email"
         ></app-new-text-input>
         <app-new-text-input
           [type]="shouldShowPassword ? 'text' : 'password'"
           [control]="passwordFormControl"
-          errorMessage="Required"
           label="Password"
           [displayEye]="true"
-          (eyeIconClicked)="switchPasswordVisibility()"
+          (eyeIconClicked)="shouldShowPassword = !shouldShowPassword"
         ></app-new-text-input>
 
         <div class="card__button-wrapper">
-          <app-default-button [text]="'Login'" width="100%" type="submit" [fontSizeRem]="1.3" (buttonClick)="login()"></app-default-button>
+          <app-default-button [text]="'Login'" width="100%" type="submit" [fontSizeRem]="1.3"></app-default-button>
         </div>
     </form>
 
     <div class="card__register">
       <span>Don't have an account? </span>
       <a routerLink="/register" [queryParams]="{ returnUrl: returnUrl }">Register now</a>
-  </div>
+    </div>
 </div>

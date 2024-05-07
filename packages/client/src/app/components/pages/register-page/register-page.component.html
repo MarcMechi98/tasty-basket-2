@@ -1,51 +1,52 @@
 <div class="container">
-  <div class="details">
-    <app-title title="Register"></app-title>
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <app-text-input
-        [control]="fc['name']"
-        [shouldDisplayErrors]="isSubmitted"
-        label="Name"
-        placeholder="Enter your full name"
-      ></app-text-input>
+  <div class="card">
+    <h1 class="card__title">New account</h1>
 
-      <app-text-input
-        [control]="fc['email']"
-        [shouldDisplayErrors]="isSubmitted"
+    <form [formGroup]="registrationForm" class="card__form" (ngSubmit)="register()">
+      <app-new-text-input
+        [control]="nameFormControl"
+        label="Full name"
+        [displayAsterisk]="true"
+      ></app-new-text-input>
+
+      <app-new-text-input
+        [control]="emailFormControl"
         label="Email"
-        type="email"
-        placeholder="Enter your email address"
-      ></app-text-input>
+        [displayAsterisk]="true"
+      ></app-new-text-input>
 
-      <app-text-input
-        [control]="fc['password']"
-        [shouldDisplayErrors]="isSubmitted"
+      <app-new-text-input
+        [type]="shouldShowPassword ? 'text' : 'password'"
+        [control]="passwordFormControl"
         label="Password"
-        type="password"
-        placeholder="Enter your password"
-      ></app-text-input>
+        [displayEye]="true"
+        [displayAsterisk]="true"
+        (eyeIconClicked)="shouldShowPassword = !shouldShowPassword"
+      ></app-new-text-input>
 
-      <app-text-input
-        [control]="fc['confirmPassword']"
-        [shouldDisplayErrors]="isSubmitted"
-        label="Password confirmation"
-        type="password"
-        placeholder="Confirm your password"
-      ></app-text-input>
+      <app-new-text-input
+        [type]="shouldShowPasswordConfirmation ? 'text' : 'password'"
+        [control]="confirmPasswordFormControl"
+        label="Confirm password"
+        [displayEye]="true"
+        [displayAsterisk]="true"
+        (eyeIconClicked)="shouldShowPasswordConfirmation = !shouldShowPasswordConfirmation"
+      ></app-new-text-input>
 
-      <app-text-input
-        [control]="fc['address']"
-        [shouldDisplayErrors]="isSubmitted"
+      <app-new-text-input
+        [control]="addressFormControl"
         label="Address"
-        placeholder="Enter your home address"
-      ></app-text-input>
+        [displayAsterisk]="true"
+      ></app-new-text-input>
 
-      <app-default-button text="Register"></app-default-button>
+      <div class="card__button-wrapper">
+        <app-default-button [text]="'Register'" width="100%" type="submit" [fontSizeRem]="1.3"></app-default-button>
+      </div>
     </form>
 
-    <div class="login">
+    <div class="card__login">
       <span>Already have an account? </span>
-      <a routerLink="/login" [queryParams]="{returnUrl: returnUrl}">Login</a>
+      <a routerLink="/login" [queryParams]="{ returnUrl: returnUrl }">Login now</a>
     </div>
   </div>
 </div>
