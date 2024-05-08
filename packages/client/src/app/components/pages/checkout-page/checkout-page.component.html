@@ -1,8 +1,9 @@
-<div class="checkout">
+<div class="checkout-page">
   <app-title title="Order Details" fontSize="1.6rem"></app-title>
 
   <div class="content">
-    <section class="content__form">
+    <section class="content__form-section">
+      <h2 class="content__form-header">Delivery info</h2>
       <form [formGroup]="checkoutForm">
         <app-new-text-input
           type="text"
@@ -17,21 +18,23 @@
       </form>
     </section>
 
-    <section class="content__order-list">
-      <h2 class="content__header">Order items</h2>
-      <app-order-items-list [order]="order"></app-order-items-list>
-    </section>
-
-    <section class="content__map">
-      <h2 class="content__header">Select your address</h2>
+    <section class="content__map-section">
+      <h2 class="content__section-header">Select your address</h2>
       <app-map [order]="order"></app-map>
     </section>
 
+    <section class="content__orders-section">
+      <h2 class="content__section-header">Order items</h2>
+      <app-order-items-list [order]="order"></app-order-items-list>
+    </section>
+  </div>
+
+  <div class="button-container">
     <app-default-button
       text="Proceed to payment"
-      [fontSizeRem]="1"
+      [fontSizeRem]="1.5"
       (click)="createOrder()"
-      [width]="'100%'"
+      width="100%"
     ></app-default-button>
   </div>
 </div>

@@ -7,49 +7,99 @@
   --error-color: red;
 }
 
-.checkout {
-  padding: 2rem 0 3rem 0;
-  margin: 0 auto;
+.checkout-page {
+  padding: 2rem 0 5rem 0;
   max-width: 90vw;
+  margin: 0 auto;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  &__form {
-    width: 100%;
+  &__form-section {
     padding-bottom: 3rem;
     border-bottom: 2px solid var(--border-color);
-  }
-
-  form {
-    width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    gap: 2rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: var(--default-box-shadow);
+    flex-direction: column;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: var(--default-box-shadow);
+    }
   }
 
-  &__order-list {
-    width: 100%;
+  &__form-header {
+    display: none;
+  }
+
+  &__map-section {
     padding: 2rem 0 3rem 0;
     border-bottom: 2px solid var(--border-color);
   }
 
-  &__header {
+  &__orders-section {
+    padding: 2rem 0 3rem 0;
+  }
+
+  &__section-header {
     color: gray;
     font-weight: 500;
     font-size: 1.5rem;
   }
+}
 
-  &__map {
-    width: 100%;
-    padding: 2rem 0;
+.button-container {
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 620px) {
+  .checkout-page {
+    max-width: 80vw;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 3rem;
+    column-gap: 3rem;
+
+    &__form-header {
+      display: block;
+      color: gray;
+      font-weight: 500;
+      font-size: 1.5rem;
+    }
+
+    &__form-section {
+      padding: 0;
+      border: none;
+
+      form {
+        gap: 3rem;
+      }
+    }
+
+    &__map-section > h2 {
+      display: none;
+    }
+
+    &__map-section {
+      padding: 0;
+      border: none;
+    }
+
+    &__orders-section {
+      grid-column: span 2;
+      border-top: 2px solid var(--border-color);
+    }
+  }
+
+  .button-container {
+    max-width: 30%;
   }
 }

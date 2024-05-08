@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LocationService {
-  getCurrentLocation(): Observable<LatLngLiteral> {
+  getCurrentLocation$(): Observable<LatLngLiteral> {
     return new Observable((observer) => {
       if (!navigator.geolocation) return;
 

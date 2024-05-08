@@ -1,5 +1,5 @@
 .cart-page {
-  padding: 2rem 0 3rem 0;
+  padding: 2rem 0 5rem 0;
   max-width: 90vw;
   margin: 0 auto;
 
@@ -153,7 +153,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      height: 12rem;
+      min-height: auto;
       width: 100%;
       border: 2px solid var(--vibrant-red);
       border-radius: 1rem;
@@ -172,25 +172,20 @@
 
       &__count {
         margin-bottom: .5rem;
-
-        p {
-          color: grey;
-        }
+        font-weight: 500;
+        color: var(--light-black);
 
         span {
-          font-weight: 400;
           color: var(--vibrant-red);
         }
       }
 
       &__total-price {
-        p {
-          color: grey;
-        }
+        font-weight: 500;
+        color: var(--light-black);
 
         span {
           color: green;
-          font-weight: 500;
         }
       }
     }
@@ -199,6 +194,8 @@
 
 @media only screen and (min-width: 620px) {
   .cart-page {
+    max-width: 70vw;
+
     .general-container {
       .items {
         &__upper-container {

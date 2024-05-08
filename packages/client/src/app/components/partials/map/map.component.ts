@@ -54,7 +54,7 @@ export class MapComponent implements OnChanges {
   }
 
   public findMyLocation(): void {
-    this.locationService.getCurrentLocation().subscribe({
+    this.locationService.getCurrentLocation$().subscribe({
       next: (latlng) => {
         this.setMarker(latlng);
         this.map.setView(latlng, this.MARKER_ZOOM_LVL);
