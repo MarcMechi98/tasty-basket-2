@@ -12,7 +12,7 @@
         <li *ngFor="let cartItem of cart.items" class="items__item">
           <div class="items__upper-container">
             <div>
-              <img [src]="cartItem.food.imageUrl" alt="Cart item food image" />
+              <img [src]="cartItem.food.imageUrl" alt="Cart item food" />
             </div>
 
             <div>
@@ -63,7 +63,7 @@
 
       <app-default-button
         text="Proceed to checkout"
-        [fontSizeRem]="1"
+        [fontSizeRem]="1.2"
         routerLink="/checkout"
         [width]="'100%'"
       ></app-default-button>

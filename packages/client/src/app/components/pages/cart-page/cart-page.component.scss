@@ -23,7 +23,7 @@
       border: 2px solid var(--vibrant-red);
       border-radius: 1rem;
       width: 100%;
-      box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--default-box-shadow);
 
       &__item {
         display: flex;
@@ -159,7 +159,7 @@
       border-radius: 1rem;
       padding: .5rem;
       margin-top: 1rem;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      box-shadow: var(--default-box-shadow);
 
       &__container {
         font-size: 1.4rem;

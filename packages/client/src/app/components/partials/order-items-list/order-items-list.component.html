@@ -1,35 +1,32 @@
-<table>
-  <tr *ngFor="let item of order.items">
-    <td class="food-item">
-      <a routerLink="/food/{{ item.food.id }}">
-        <img [src]="item.food.imageUrl">
-      </a>
-    </td>
-    <td class="food-item">
-      {{ item.food.name }}
-    </td>
-    <td class="food-item">
-      {{ item.food.price | currency }}
-    </td>
-    <td class="food-item">
-      {{ item.quantity }}
-    </td>
-    <td class="food-item">
-      {{ item.price | currency }}
-    </td>
-  </tr>
+<div class="container">
+  <ul class="items">
+    <li *ngFor="let item of order.items" class="item">
+      <div class="item__image">
+        <a routerLink="/food/{{ item.food.id }}">
+          <img [src]="item.food.imageUrl">
+        </a>
+      </div>
 
-  <tr>
-    <td colspan="3"></td>
-    <td>
-      <strong>
-        Total:
-      </strong>
-    </td>
-    <td>
-      <strong>
-        {{ order.totalPrice | currency }}
-      </strong>
-    </td>
-  </tr>
-</table>
+      <div class="item__name">
+        <p>{{ item.food.name }}</p>
+      </div>
+
+      <div class="item__quantity">
+        <p>x{{ item.quantity }}</p>
+      </div>
+
+      <div class="item__price">
+        <p>{{ item.price | currency }}</p>
+      </div>
+    </li>
+  </ul>
+
+  <div class="total">
+    <span></span>
+    <span></span>
+    <span></span>
+    <div>
+      <p>Total: <strong>{{ order.totalPrice | currency }}</strong></p>
+    </div>
+  </div>
+</div>

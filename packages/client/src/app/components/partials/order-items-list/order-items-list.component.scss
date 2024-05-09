@@ -1,33 +1,77 @@
-table {
-  width: 100%;
-  margin-top: 1rem;
+.container {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: var(--default-box-shadow);
+  margin-top: 1rem;
 }
 
-h3 {
-  margin-top: .5rem;
-  margin-left: .3rem;
-  color: gray;
+.item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  border-bottom: 1px solid var(--table-light-grey);
+
+  &__image {
+
+    img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
+      border-radius: 100rem;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border: 2px solid #fff;
+    }
+  }
+
+  & > div {
+    display: flex;
+    align-items: center;
+    padding: .2rem 0;
+  }
+
+  &__image, &__name, &__quantity {
+    justify-content: flex-start;
+
+    p {
+      font-weight: 500;
+    }
+  }
+
+  &__price {
+    justify-content: flex-end;
+  }
 }
 
-a:hover {
-  cursor: pointer;
-  opacity: .9;
+.total {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+  padding-top: 1rem;
+
+  & > span {
+    display: none;
+  }
 }
 
-td.food-item {
-  border-bottom: 1px solid #e4e4e4;
-}
+@media screen and (min-width: 1200px) {
+  .item {
+    grid-template-columns: 1fr 1fr 1fr 2fr;
 
-td {
-  height: 3rem;
+    &__image, &__price {
+      justify-content: center;
+    }
+  }
 
-  img {
-    width: 3rem;
-    height: 3rem;
-    object-fit: cover;
-    border-radius: 100rem;
+  .total {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+
+    div {
+      display: flex;
+      justify-content: center;
+    }
+
+    span {
+      display: block;
+    }
   }
 }
