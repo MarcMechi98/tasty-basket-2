@@ -2,7 +2,7 @@
   <table>
     <thead>
       <tr>
-        <th>Order ID</th>
+        <th class="order-id">Order ID</th>
         <th>Date</th>
         <th>Address</th>
         <th>Status</th>
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let order of orders">
-        <td># {{ order.id }}</td>
+        <td class="order-id"># {{ order.id }}</td>
         <td>{{ order.createdAt | date }}</td>
         <td>{{ order.address }}</td>
         <td>{{ order.status }}</td>

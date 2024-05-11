@@ -1,5 +1,5 @@
 .general-container {
-  margin: 2rem 1.5rem 1.5rem 1.5rem;
+  margin: 0 auto;
 }
 
 table {
@@ -15,7 +15,7 @@ th, td {
 }
 
 th {
-  background-color: #ffbbbb;
+  background-color: #faa4a4;
 
   &:first-child {
     border-top-left-radius: 0.5rem;
@@ -36,4 +36,22 @@ button {
 
 button:hover {
   background-color: #e0e0e0;
+}
+
+@media only screen and (max-width: 620px) {
+  .order-id {
+    display: none;
+  }
+
+  th {
+    &:nth-child(2) {
+      border-top-left-radius: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .general-container {
+    max-width: 80vw;
+  }
 }
