@@ -1,7 +1,7 @@
 <div class="checkout-page">
   <app-title title="Order Details" fontSize="1.6rem"></app-title>
 
-  <h2 class="content__form-header">Delivery info</h2>
+  <h2 class="checkout-page__section-header first">Delivery info</h2>
   <div class="content">
     <section class="content__form-section">
       <form [formGroup]="checkoutForm">
@@ -19,12 +19,12 @@
     </section>
 
     <section class="content__map-section">
-      <h2 class="content__section-header">Select your address</h2>
+      <h2 class="checkout-page__section-header">Select your address</h2>
       <app-map [order]="order"></app-map>
     </section>
 
-    <section class="content__orders-section">
-      <h2 class="content__section-header">Order items</h2>
+    <section class="content__order-section">
+      <h2 class="checkout-page__section-header">Order items</h2>
       <app-order-items-list [order]="order"></app-order-items-list>
     </section>
   </div>

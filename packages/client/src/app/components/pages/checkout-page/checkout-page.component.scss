@@ -1,16 +1,21 @@
 :host {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --label-color: #8597a3;
   --border-color: #eee;
-  --focus-color: #665856;
-  --error-color: red;
 }
 
 .checkout-page {
   padding: 2rem 0 5rem 0;
   max-width: 90vw;
   margin: 0 auto;
+
+  &__section-header {
+    color: gray;
+    font-weight: 500;
+    font-size: 1.5rem;
+
+    &.first {
+      padding-bottom: 1rem;
+    }
+  }
 }
 
 .content {
@@ -38,16 +43,15 @@
   &__map-section {
     padding: 2rem 0 3rem 0;
     border-bottom: 2px solid var(--border-color);
+    height: 15rem;
+
+    & > h2 {
+      padding-bottom: 1rem;
+    }
   }
 
-  &__orders-section {
+  &__order-section {
     padding: 2rem 0 3rem 0;
-  }
-
-  &__section-header {
-    color: gray;
-    font-weight: 500;
-    font-size: 1.5rem;
   }
 }
 
@@ -57,7 +61,7 @@
 
 @media only screen and (min-width: 620px) {
   .checkout-page {
-    max-width: 80vw;
+    max-width: 70vw;
   }
 }
 
@@ -96,7 +100,7 @@
       border: none;
     }
 
-    &__orders-section {
+    &__order-section {
       grid-column: span 2;
       padding: 2rem 8rem 3rem 8rem;
       border-top: 2px solid var(--border-color);

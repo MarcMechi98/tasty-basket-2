@@ -1,31 +1,32 @@
-<div class="container">
+<div class="payment-page">
+  <app-title title="Order Summary" fontSize="1.6rem"></app-title>
+
+  <h2 class="payment-page__section-header first">Shipping Info</h2>
   <div class="content">
-    <app-title title="Order Summary" fontSize="1.6rem"></app-title>
-    <div class="summary">
-      <div>
-        <h3>Name:</h3>
-        <span>{{ order.name }}</span>
+    <section class="basic-info">
+      <div class="basic-info__container">
+        <div>
+          <h3>Name:</h3>
+          <p>{{ order.name }}</p>
+        </div>
+        <div>
+          <h3>Address:</h3>
+          <p>{{ order.address }}</p>
+        </div>
       </div>
-      <div>
-        <h3>Address:</h3>
-        <span>{{ order.address }}</span>
-      </div>
-    </div>
-    <app-order-items-list [order]="order"></app-order-items-list>
-  </div>
+    </section>
 
-  <div class="map">
-    <app-title
-      title="Shipping Address"
-      fontSize="1.6rem"
-    ></app-title>
+    <section class="map">
+      <app-map [order]="order" [readonly]="true"></app-map>
+    </section>
 
-    <app-map [order]="order" [readonly]="true"></app-map>
+    <section class="order">
+      <h2 class="payment-page__section-header">Order items</h2>
+      <app-order-items-list [order]="order"></app-order-items-list>
+    </section>
   </div>
 
   <div class="buttons-container">
-    <div class="buttons">
-      <app-paypal-button [order]="order"></app-paypal-button>
-    </div>
+    <app-paypal-button [order]="order"></app-paypal-button>
   </div>
 </div>

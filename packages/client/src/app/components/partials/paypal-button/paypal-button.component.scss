@@ -1,0 +1,9 @@
+div {
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 620px) {
+  div {
+    max-width: 50%;
+  }
+}
