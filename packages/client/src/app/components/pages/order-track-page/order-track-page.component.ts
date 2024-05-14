@@ -1,33 +1,28 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Order } from 'src/app/shared/models/order';
 import { OrderService } from 'src/app/services/order.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order-track-page',
   templateUrl: './order-track-page.component.html',
   styleUrl: './order-track-page.component.scss'
 })
-export class OrderTrackPageComponent {
-  order!: Order;
+export class OrderTrackPageComponent implements OnInit {
+  public order$!: Observable<Order>;
 
   constructor(
     private orderService: OrderService,
-    private router: Router,
-    activatedRoute: ActivatedRoute,
-  ) {
-    const params = activatedRoute.snapshot.params;
+    private activatedRoute: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    const params = this.activatedRoute.snapshot.params;
 
     if (!params['orderId']) return;
 
-    this.orderService.trackOrderById(params['orderId'])
-      .subscribe(order => {
-        this.order = order;
-      });
-  }
-
-  public goToOrdersPage(): void {
-    this.router.navigateByUrl('/orders');
+    this.order$ = this.orderService.trackOrderById$(params['orderId'])
   }
 }

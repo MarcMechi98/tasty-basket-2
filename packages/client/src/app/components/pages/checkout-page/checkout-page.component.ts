@@ -63,7 +63,7 @@ export class CheckoutPageComponent implements OnInit {
     this.order.name = this.nameFormControl.value;
     this.order.address = this.addressFormControl.value;
 
-    this.orderService.create(this.order).subscribe({
+    this.orderService.create$(this.order).subscribe({
       next: () => {
         this.router.navigateByUrl('/payment');
       },

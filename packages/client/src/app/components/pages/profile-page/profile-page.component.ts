@@ -37,7 +37,7 @@ export class ProfilePageComponent implements OnInit{
       this.favoriteFoods = favorites;
     });
 
-    this.orderService.getAllOrdersFromUser(currentUserId).subscribe(orders => {
+    this.orderService.getAllOrdersFromUser$(currentUserId).subscribe(orders => {
       this.lastOrder = orders[0];
       console.log(this.lastOrder);
     });

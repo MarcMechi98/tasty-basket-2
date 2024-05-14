@@ -1,23 +1,36 @@
-<div class="container">
-  <div class="content" *ngIf="order">
-    <h1>Order #{{order.id}}</h1>
-    <div class="details">
-      <div><strong>Date:</strong> {{order.createdAt | date:'medium'}}</div>
-      <div><strong>Name:</strong> {{order.name}}</div>
-      <div><strong>Address:</strong> {{order.address}}</div>
-      <div><strong>Status:</strong> {{order.status}}</div>
-      <div *ngIf="order.paymentId">
+<div class="details-page" *ngIf="order$ | async as order">
+  <h1>Order: <strong>#{{order.id}}</strong></h1>
+
+  <div class="content">
+    <section class="details">
+      <p><strong>Date:</strong> {{order.createdAt | date:'medium'}}</p>
+      <p><strong>Name:</strong> {{order.name}}</p>
+      <p><strong>Address:</strong> {{order.address}}</p>
+      <p><strong>Status:</strong> {{order.status}}</p>
+      <p *ngIf="order.paymentId">
         <strong>Payment ID:</strong> {{order.paymentId}}
+      </p>
+    </section>
+
+    <section class="order">
+      <h2 class="content__section-header">Order items</h2>
+      <app-order-items-list [order]="order"></app-order-items-list>
+    </section>
+
+    <section class="map">
+      <h2 class="content__section-header">Delivery address</h2>
+      <div class="map__container">
+        <app-map [order]="order" [readonly]="true"></app-map>
       </div>
-    </div>
-
-    <app-order-items-list [order]="order"></app-order-items-list>
+    </section>
   </div>
 
-  <div>
-    <app-title title="Shipping Address"></app-title>
-    <app-map [order]="order" [readonly]="true"></app-map>
+  <div class="button-container">
+    <app-default-button
+      text="All orders"
+      routerLink="/orders"
+      width="100%"
+      [fontSizeRem]="1.5"
+    ></app-default-button>
   </div>
-
-  <app-default-button text="All orders" type="button" (onClick)="goToOrdersPage()"></app-default-button>
 </div>

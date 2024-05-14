@@ -18,7 +18,7 @@ export class PaymentPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.orderService.getNewOrderForCurrentUser().subscribe({
+    this.orderService.getNewOrderForCurrentUser$().subscribe({
       next: order => this.order = order,
       error: () => {
         this.router.navigateByUrl('/checkout');

@@ -20,7 +20,7 @@ export class OrdersPageComponent {
   ngOnInit(): void {
     const currentUserId = this.userService.currentUser.id
 
-    this.ordersService.getAllOrdersFromUser(currentUserId).subscribe(orders => {
+    this.ordersService.getAllOrdersFromUser$(currentUserId).subscribe(orders => {
       this.orders = orders
     })
   }
