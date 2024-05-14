@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.getCartObservable()
+    this.cartService.getCartObservable$()
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(newCart => {
         this.cartQuantity = newCart.totalCount

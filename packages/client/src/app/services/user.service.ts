@@ -15,18 +15,18 @@ const USER_KEY = 'User';
   providedIn: 'root'
 })
 export class UserService {
-  private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(this.getUserFromLocalstorage());
-  user$!: Observable<User>;
+  private userSubject$: BehaviorSubject<User> = new BehaviorSubject<User>(this.getUserFromLocalstorage());
+  public user$!: Observable<User>;
 
   constructor(
     private http: HttpClient,
     private toastr: ToastrService
   ) {
-    this.user$ = this.userSubject.asObservable();
+    this.user$ = this.userSubject$.asObservable();
   }
 
   get currentUser(): User {
-    return this.userSubject.value;
+    return this.userSubject$.value;
   }
 
   public login$(userLogin: IUserLogin): Observable<User> {
@@ -35,7 +35,7 @@ export class UserService {
         next: (user: User) => {
           this.setUserToLocalstorage(user);
 
-          this.userSubject.next(user);
+          this.userSubject$.next(user);
           this.toastr.success(
             `Welcome to Tasty Basket, ${user.name}!\n
             You are logged in.`
@@ -55,7 +55,7 @@ export class UserService {
         next: (user: User) => {
           this.setUserToLocalstorage(user);
 
-          this.userSubject.next(user);
+          this.userSubject$.next(user);
           this.toastr.success(
             `Welcome to Tasty Basket, ${user.name}!\n
             Registration successful.`
@@ -71,7 +71,7 @@ export class UserService {
 
   public logout(): void {
     localStorage.removeItem(USER_KEY);
-    this.userSubject.next(new User());
+    this.userSubject$.next(new User());
     window.location.reload();
   }
 

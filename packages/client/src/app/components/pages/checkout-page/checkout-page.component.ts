@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subject, takeUntil } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,7 +14,8 @@ import { Order } from 'src/app/shared/models/order';
   templateUrl: './checkout-page.component.html',
   styleUrl: './checkout-page.component.scss'
 })
-export class CheckoutPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit, OnDestroy {
+  private readonly unsubscribeAll$ = new Subject<void>();
   public order: Order = new Order();
   public checkoutForm!: FormGroup;
   public nameInputFocused = false;
@@ -41,6 +43,11 @@ export class CheckoutPageComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribeAll$.next();
+    this.unsubscribeAll$.complete();
+  }
+
   get nameFormControl(): FormControl {
     return this.checkoutForm.get('name') as FormControl;
   }
@@ -63,7 +70,9 @@ export class CheckoutPageComponent implements OnInit {
     this.order.name = this.nameFormControl.value;
     this.order.address = this.addressFormControl.value;
 
-    this.orderService.create$(this.order).subscribe({
+    this.orderService.create$(this.order)
+    .pipe(takeUntil(this.unsubscribeAll$))
+    .subscribe({
       next: () => {
         this.router.navigateByUrl('/payment');
       },

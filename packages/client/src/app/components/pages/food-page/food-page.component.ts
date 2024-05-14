@@ -13,11 +13,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./food-page.component.scss']
 })
 export class FoodPageComponent implements OnInit, OnDestroy {
-  public food!: Food;
+  private readonly unsubscribeAll$: Subject<void> = new Subject<void>();
   private favoriteFoods: Food[] = [];
-  private unsubscribeAll: Subject<void> = new Subject<void>();
   private currentUserId!: string;
   private debounceClick = new Subject();
+  public food!: Food;
 
   constructor(
     private router: Router,
@@ -32,7 +32,7 @@ export class FoodPageComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.pipe(
       switchMap(params => this.foodService.getFoodById(params['foodId'])),
-      takeUntil(this.unsubscribeAll)
+      takeUntil(this.unsubscribeAll$)
     ).subscribe(food => {
       this.food = food;
 
@@ -46,7 +46,9 @@ export class FoodPageComponent implements OnInit, OnDestroy {
 
     if (!this.currentUserId) return;
 
-    this.debounceClick.pipe(
+    this.debounceClick
+    .pipe(
+      takeUntil(this.unsubscribeAll$),
       debounceTime(300)
     ).subscribe(() => {
       const action = this.food.isFavorite ? 'remove' : 'add';
@@ -57,8 +59,8 @@ export class FoodPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unsubscribeAll.next();
-    this.unsubscribeAll.complete();
+    this.unsubscribeAll$.next();
+    this.unsubscribeAll$.complete();
   }
 
   private updateFavoriteProperty(): void {
