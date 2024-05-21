@@ -49,7 +49,7 @@ export class UserService {
     )
   }
 
-  public register(userInput: UserRegistrationInput): Observable<User> {
+  public register$(userInput: UserRegistrationInput): Observable<User> {
     return this.http.post<User>(USER_REGISTER_URL, userInput).pipe(
       tap({
         next: (user: User) => {

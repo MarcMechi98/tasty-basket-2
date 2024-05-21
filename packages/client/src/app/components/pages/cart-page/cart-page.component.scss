@@ -1,6 +1,7 @@
 .cart-page {
   padding: 2rem 0 5rem 0;
   max-width: 90vw;
+  min-height: 80vh;
   margin: 0 auto;
 
   .general-container {
@@ -49,7 +50,7 @@
           img {
             width: 5rem;
             height: 5rem;
-            border-radius: 100rem;
+            border-radius: 100%;
             object-fit: cover;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             border: 2px solid #fff;

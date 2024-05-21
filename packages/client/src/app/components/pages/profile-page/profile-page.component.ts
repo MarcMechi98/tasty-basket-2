@@ -1,45 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { faCartShopping, faEnvelope, faHeart, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { faCartShopping, faEnvelope, faHeart, faMapMarkerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
+import { User } from '../../../shared/models/user';
 import { Food } from 'src/app/shared/models/food';
 import { Order } from 'src/app/shared/models/order';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
-  styleUrl: './profile-page.component.scss'
+  styleUrl: './profile-page.component.scss',
 })
-export class ProfilePageComponent implements OnInit{
-  faCartShopping = faCartShopping
-  faHeart = faHeart
-  faEnvelope = faEnvelope
-  faMapMarkerAlt = faMapMarkerAlt
-  public user: any = {}
-  public favoriteFoods: Food[] = []
-  public lastOrder!: Order
+export class ProfilePageComponent implements OnInit, OnDestroy {
+  public user!: User;
+  public favoriteFoods!: Food[];
+  public lastOrder!: Order;
+  private readonly unsubscribeAll$: Subject<void> = new Subject<void>();
+
+  public faCartShopping = faCartShopping;
+  public faHeart = faHeart;
+  public faEnvelope = faEnvelope;
+  public faUser = faUser;
+  public faMapMarkerAlt = faMapMarkerAlt;
 
   constructor(
     private userService: UserService,
-    private orderService: OrderService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit() {
-    this.user = {
-      name: 'Marcelo',
-      email: 'oi@gmail.com',
-      address: 'Rua 1, 123',
-    }
+    this.user = this.userService.currentUser;
 
-    const currentUserId = this.userService.currentUser.id;
+    this.userService
+      .getFavoritesFromUser$(this.user.id)
+      .pipe(takeUntil(this.unsubscribeAll$))
+      .subscribe((favorites) => {
+        this.favoriteFoods = favorites;
+      });
 
-    this.userService.getFavoritesFromUser$(currentUserId).subscribe(favorites => {
-      this.favoriteFoods = favorites;
-    });
+    this.orderService
+      .getAllOrdersFromUser$(this.user.id)
+      .pipe(takeUntil(this.unsubscribeAll$))
+      .subscribe((orders) => {
+        this.lastOrder = orders[0];
+        console.log(this.lastOrder);
+      });
+  }
 
-    this.orderService.getAllOrdersFromUser$(currentUserId).subscribe(orders => {
-      this.lastOrder = orders[0];
-      console.log(this.lastOrder);
-    });
+  ngOnDestroy() {
+    this.unsubscribeAll$.next();
+    this.unsubscribeAll$.complete();
   }
 }

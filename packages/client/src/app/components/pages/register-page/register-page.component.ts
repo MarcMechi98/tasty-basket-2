@@ -88,7 +88,7 @@ export class RegisterPageComponent implements OnInit {
     };
 
     try {
-      await firstValueFrom(this.userService.register(user));
+      await firstValueFrom(this.userService.register$(user));
       this.router.navigateByUrl(this.returnUrl);
     } catch (error) {
       console.error(error);
