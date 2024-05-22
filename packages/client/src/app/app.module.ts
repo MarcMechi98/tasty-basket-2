@@ -36,7 +36,6 @@ import { OrdersListComponent } from './components/partials/orders-list/orders-li
 import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ArraySpacePipe } from './shared/pipes/array-space.pipe';
-import { AddressFormComponent } from './components/partials/address-form/address-form.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
 import { FaqComponent } from './components/partials/faq/faq.component';
 import { NewTextInputComponent } from './components/partials/new-text-input/new-text-input.component';
@@ -68,7 +67,6 @@ import { NewTextInputComponent } from './components/partials/new-text-input/new-
     OrdersListComponent,
     ProfilePageComponent,
     ArraySpacePipe,
-    AddressFormComponent,
     FooterComponent,
     FaqComponent,
     NewTextInputComponent

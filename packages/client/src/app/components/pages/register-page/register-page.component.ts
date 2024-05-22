@@ -72,7 +72,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   public async register(): Promise<void> {
-    console.log(this.registrationForm)
     this.isSubmitted = true;
 
     if (this.registrationForm.invalid) {

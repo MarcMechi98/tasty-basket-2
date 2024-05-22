@@ -44,7 +44,6 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribeAll$))
       .subscribe((orders) => {
         this.lastOrder = orders[0];
-        console.log(this.lastOrder);
       });
   }
 
