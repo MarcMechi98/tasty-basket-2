@@ -10,7 +10,8 @@
     "dev": "cd packages/client && npm start & cd packages/server && npm start",
     "start": "cd packages/server/built && node server.js",
     "prebuild": "cd packages/server && npm run build",
-    "build": "cd packages/client && npm run build"
+    "build": "cd packages/client && npm run build",
+    "install-all": "cd packages/client && npm install && cd ../server && npm install"
   },
   "repository": {
     "type": "git",
