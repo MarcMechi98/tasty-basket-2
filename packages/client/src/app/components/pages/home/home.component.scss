@@ -120,6 +120,17 @@
   }
 }
 
+@media only screen and (min-width: 620px) {
+  .home {
+    &__food-cards {
+      max-width: 80%;
+
+      &--one {
+        max-width: 30%;
+      }
+    }
+  }
+}
 
 @media only screen and (min-width: 1200px) {
   .home {
