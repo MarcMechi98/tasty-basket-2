@@ -4,6 +4,7 @@ Tasty Basket is a full-stack food e-commerce application that I've created from 
 - Food details page
 - Cart page
 - Checkout page
+- User address tracking using Leaflet
 - Payment page (using the Paypal SDK)
 - Order details page
 - All orders page
@@ -25,5 +26,7 @@ From the root of the project:
 Run `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Login info for making payments through Paypal
+Please use the following login credentials to simulate order payment through paypal.
+
 - Login email: sb-7p6yv29176224@personal.example.com
 - Password: FG5sc$Fe
