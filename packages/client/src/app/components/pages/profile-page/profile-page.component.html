@@ -59,7 +59,7 @@
     <fa-icon class="cart" [icon]="faHeart" alt="Heart"></fa-icon><span>Favorites</span>
   </h2>
   <section class="favorites content__section">
-    <ng-container *ngIf="favoriteFoods.length; else noFavorites">
+    <ng-container *ngIf="favoriteFoods && favoriteFoods.length; else noFavorites">
       <div *ngFor="let food of favoriteFoods" class="favorites__grid-container">
         <div class="favorites__grid-item">
           <img [src]="food.imageUrl">

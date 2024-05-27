@@ -1,24 +1,20 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { faArrowRightFromBracket, faBars, faShoppingCart, faUser, faX } from '@fortawesome/free-solid-svg-icons';
-import { NavigationEnd, Router } from '@angular/router';
 
 import { CartService } from './../../../services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user';
-import { Subject, fromEvent, takeUntil } from 'rxjs';
+import { fromEvent } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  private readonly unsubscribeAll = new Subject<void>();
-
+export class HeaderComponent implements OnInit, AfterViewInit {
   public cartQuantity = 0;
   public user!: User;
-  public isInLoginPage = false;
   public isScrolledDown = false;
   public shouldShowDropdown = false;
 
@@ -39,33 +35,23 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private cartService: CartService,
     private userService: UserService,
-    private router: Router
+    private destroyRef: DestroyRef,
   ) {}
 
   ngOnInit(): void {
     this.cartService.getCartObservable$()
-      .pipe(takeUntil(this.unsubscribeAll))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(newCart => {
         this.cartQuantity = newCart.totalCount
       });
 
     this.userService.user$
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(user => this.user = user);
-
-    /* this.router.events
-      .pipe(takeUntil(this.unsubscribeAll))
-      .subscribe(event => {
-        this.shouldShowDropdown = false;
-        if (event instanceof NavigationEnd) {
-          this.isInLoginPage = event.url.includes('login');
-        }
-      }) */
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((user) => (this.user = user));
   }
 
   ngAfterViewInit(): void {
     fromEvent(document, 'click')
-      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(({ target }) => {
         this.manageDropdown(target);
       });
@@ -84,11 +70,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
       this.shouldShowDropdown = false;
       return;
     }
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll.next();
-    this.unsubscribeAll.complete();
   }
 
   get isLoggedIn(): boolean {

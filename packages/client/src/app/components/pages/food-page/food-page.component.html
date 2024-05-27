@@ -1,53 +1,56 @@
 <div class="food-page">
-  <app-not-found
-    *ngIf="!food"
-    message="Food not found!"
-    resetLinkText="Go to home page"
-  ></app-not-found>
+  <ng-container *ngIf="food?.id; else foodNotFound">
+    <section class="food-container">
+      <img [src]="food.imageUrl" [alt]="food.name" class="food-container__image">
+      <div class="details">
+        <header class="header">
+          <span class="name">
+            {{ food.name }}
+          </span>
+          <span class="heart-icon" [ngClass]="{'favorite': food.isFavorite}" (click)="switchFavorite()">❤</span>
+        </header>
 
-  <section class="food-container" *ngIf="food && food.id">
-    <img [src]="food.imageUrl" [alt]="food.name" class="food-container__image">
-    <div class="details">
-      <header class="header">
-        <span class="name">
-          {{ food.name }}
-        </span>
-        <span class="heart-icon" [ngClass]="{'favorite': food.isFavorite}" (click)="switchFavorite()">❤</span>
-      </header>
+        <div class="rating">
+          <app-star-rating [stars]="food.stars" [size]="1.5"></app-star-rating>
+        </div>
 
-      <div class="rating">
-        <app-star-rating [stars]="food.stars" [size]="1.5"></app-star-rating>
+        <div class="origins">
+          <span *ngFor="let origin of food.origins">
+            {{ origin }}
+          </span>
+        </div>
+
+        <div class="tags">
+          <a *ngFor="let tag of food.tags" routerLink="/tag/{{ tag }}">
+            {{ tag }}
+          </a>
+        </div>
+
+        <div class="cooking-time">
+          <span>
+            Cooking time of <strong>{{ food.cookingTime }}</strong> minutes
+          </span>
+        </div>
+
+        <div class="price">
+          <p>Price: <span>{{ food.price | currency }}</span></p>
+        </div>
+
+        <app-default-button
+          (buttonClick)="addToCart()"
+          text="Add to cart"
+          routerLink="/checkout"
+          [fontSizeRem]="1.5"
+          [width]="'100%'"
+        ></app-default-button>
       </div>
+    </section>
+  </ng-container>
 
-      <div class="origins">
-        <span *ngFor="let origin of food.origins">
-          {{ origin }}
-        </span>
-      </div>
-
-      <div class="tags">
-        <a *ngFor="let tag of food.tags" routerLink="/tag/{{ tag }}">
-          {{ tag }}
-        </a>
-      </div>
-
-      <div class="cooking-time">
-        <span>
-          Cooking time of <strong>{{ food.cookingTime }}</strong> minutes
-        </span>
-      </div>
-
-      <div class="price">
-        <p>Price: <span>{{ food.price | currency }}</span></p>
-      </div>
-
-      <app-default-button
-        (buttonClick)="addToCart()"
-        text="Add to cart"
-        routerLink="/checkout"
-        [fontSizeRem]="1.5"
-        [width]="'100%'"
-      ></app-default-button>
-    </div>
-  </section>
+  <ng-template #foodNotFound>
+    <app-not-found
+      message="Food not found!"
+      resetLinkText="Go to home page"
+    ></app-not-found>
+  </ng-template>
 </div>

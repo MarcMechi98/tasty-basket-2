@@ -1,10 +1,14 @@
 <div class="orders-page">
   <app-title *ngIf="organizedOrders.length" title="Orders"></app-title>
-  <app-not-found
-    *ngIf="!organizedOrders.length"
-    message="You have no orders yet!"
-    resetLinkText="Go to home page"
-  ></app-not-found>
 
-  <app-orders-list *ngIf="organizedOrders.length" [orders]="organizedOrders"></app-orders-list>
+  <ng-container *ngIf="organizedOrders?.length; else noOrders">
+    <app-orders-list *ngIf="organizedOrders.length" [orders]="organizedOrders"></app-orders-list>
+  </ng-container>
+
+  <ng-template #noOrders>
+    <app-not-found
+      message="No orders found!"
+      resetLinkText="Try searching for something else"
+    ></app-not-found>
+  </ng-template>
 </div>

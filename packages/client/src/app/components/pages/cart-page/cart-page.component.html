@@ -1,72 +1,77 @@
 <div class="cart-page">
   <app-title title="Cart"></app-title>
-  <app-not-found
-    *ngIf=" !cart || !cart.items.length"
-    message="Your cart is empty!"
-    resetLinkText="Go to home page"
-  ></app-not-found>
 
-  <div class="general-container" *ngIf="cart?.items?.length">
-    <div class="main-container">
-      <ul class="items">
-        <li *ngFor="let cartItem of cart.items" class="items__item">
-          <div class="items__upper-container">
-            <div>
-              <img [src]="cartItem.food.imageUrl" alt="Cart item food" />
-            </div>
-
-            <div>
-              <a routerLink="/food/{{ cartItem.food.id }}">
-                {{ cartItem.food.name }}
-              </a>
-            </div>
-
-            <div>
-              <div class="items__quantity-container">
-                <fa-icon
-                  *ngIf="cartItem.quantity > this.minimumQuantity"
-                  [icon]="faCaretLeft"
-                  aria-label="Decrease quantity"
-                  (click)="decreaseQuantity(cartItem)"
-                ></fa-icon>
-
-                <strong class="items__quantity-indicator">
-                  {{ cartItem.quantity }}
-                </strong>
-
-                <fa-icon
-                  *ngIf="cartItem.quantity < this.maximumQuantity"
-                  [icon]="faCaretRight"
-                  aria-label="Increase quantity"
-                  (click)="increaseQuantity(cartItem)"
-                ></fa-icon>
+  <ng-container *ngIf="cart?.items?.length; else noCartItems">
+    <div class="general-container">
+      <div class="main-container">
+        <ul class="items">
+          <li *ngFor="let cartItem of cart.items" class="items__item">
+            <div class="items__upper-container">
+              <div>
+                <img [src]="cartItem.food.imageUrl" alt="Cart item food" />
               </div>
 
-              <p>
-                {{ cartItem.food.price | currency }}
-              </p>
+              <div>
+                <a routerLink="/food/{{ cartItem.food.id }}">
+                  {{ cartItem.food.name }}
+                </a>
+              </div>
+
+              <div>
+                <div class="items__quantity-container">
+                  <fa-icon
+                    *ngIf="cartItem.quantity > this.minimumQuantity"
+                    [icon]="faCaretLeft"
+                    aria-label="Decrease quantity"
+                    (click)="decreaseQuantity(cartItem)"
+                  ></fa-icon>
+
+                  <strong class="items__quantity-indicator">
+                    {{ cartItem.quantity }}
+                  </strong>
+
+                  <fa-icon
+                    *ngIf="cartItem.quantity < this.maximumQuantity"
+                    [icon]="faCaretRight"
+                    aria-label="Increase quantity"
+                    (click)="increaseQuantity(cartItem)"
+                  ></fa-icon>
+                </div>
+
+                <p>
+                  {{ cartItem.food.price | currency }}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <button class="items__remove-button" (click)="removeFromCart(cartItem)">
-            Remove
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="checkout">
-      <div class="checkout__container">
-        <p class="checkout__count">Items count: <span>{{ cart.totalCount }}</span></p>
-        <p class="checkout__total-price">Total price: <span>{{ cart.totalPrice | currency }}</span></p>
+            <button class="items__remove-button" (click)="removeFromCart(cartItem)">
+              Remove
+            </button>
+          </li>
+        </ul>
       </div>
 
-      <app-default-button
-        text="Proceed to checkout"
-        [fontSizeRem]="1.2"
-        routerLink="/checkout"
-        [width]="'100%'"
-      ></app-default-button>
+      <div class="checkout">
+        <div class="checkout__container">
+          <p class="checkout__count">Items count: <span>{{ cart.totalCount }}</span></p>
+          <p class="checkout__total-price">Total price: <span>{{ cart.totalPrice | currency }}</span></p>
+        </div>
+
+        <app-default-button
+          text="Proceed to checkout"
+          [fontSizeRem]="1.2"
+          routerLink="/checkout"
+          [width]="'100%'"
+        ></app-default-button>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+
+  <ng-template #noCartItems>
+    <app-not-found
+      message="Your cart is empty!"
+      resetLinkText="Go to home page"
+    ></app-not-found>
+  </ng-template>
 </div>

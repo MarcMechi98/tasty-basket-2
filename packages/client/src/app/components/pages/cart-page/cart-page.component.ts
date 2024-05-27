@@ -1,18 +1,17 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, DestroyRef, OnInit } from '@angular/core';
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { Cart } from 'src/app/shared/models/cart';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/shared/models/cart-item';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss'
 })
-export class CartPageComponent implements OnInit, OnDestroy {
-  private readonly unsubscribeAll$ = new Subject<void>();
+export class CartPageComponent implements OnInit {
   public cart!: Cart;
 
   public readonly minimumQuantity = 1;
@@ -23,19 +22,15 @@ export class CartPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: CartService,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit(): void {
     this.cartService.getCartObservable$()
-    .pipe(takeUntil(this.unsubscribeAll$))
+    .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(cart => {
       this.cart = cart;
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll$.next();
-    this.unsubscribeAll$.complete();
   }
 
   public removeFromCart(cartItem: CartItem): void {

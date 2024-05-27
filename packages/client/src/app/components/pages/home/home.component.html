@@ -6,48 +6,54 @@
 
     </div>
   </section>
-  <ul *ngIf="foods.length" class="home__food-cards" [class.home__food-cards--one]="foods.length === 1">
-    <li *ngFor="let food of foods" class="home__card">
-      <a routerLink="/food/{{ food.id }}">
-        <img [src]="food.imageUrl" [alt]="food.name" />
-        <section class="content">
-          <div class="content__header">
-            <p class="content__food-name">
-              {{ food.name }}
-            </p>
-            <span
-              class="content__heart-icon"
-              [ngClass]="{ 'content__heart-icon--favorite': food.isFavorite }"
-            >❤</span>
-          </div>
 
-          <div class="content__stars-and-time">
-            <app-star-rating [stars]="food.stars"></app-star-rating>
-            <div class="content__cooking-time">
-              <span>🕒</span>
-              {{ food.cookingTime }} min
+  <ng-container *ngIf="foods && foods.length; else noFoods">
+    <ul class="home__food-cards" [class.home__food-cards--one]="foods.length === 1">
+      <li *ngFor="let food of foods" class="home__card">
+        <a routerLink="/food/{{ food.id }}">
+          <img [src]="food.imageUrl" [alt]="food.name" />
+          <section class="content">
+            <div class="content__header">
+              <p class="content__food-name">
+                {{ food.name }}
+              </p>
+              <span
+                class="content__heart-icon"
+                [ngClass]="{ 'content__heart-icon--favorite': food.isFavorite }"
+              >❤</span>
             </div>
-          </div>
 
-          <div class="content__origins">
-            <span *ngFor="let origin of food.origins">
-              {{ origin }}
-            </span>
-          </div>
+            <div class="content__stars-and-time">
+              <app-star-rating [stars]="food.stars"></app-star-rating>
+              <div class="content__cooking-time">
+                <span>🕒</span>
+                {{ food.cookingTime }} min
+              </div>
+            </div>
 
-          <p class="content__price">
-            {{ food.price | currency }}
-          </p>
-        </section>
-      </a>
-    </li>
-  </ul>
+            <div class="content__origins">
+              <span *ngFor="let origin of food.origins">
+                {{ origin }}
+              </span>
+            </div>
 
-  <app-not-found
-    *ngIf="!foods.length"
-    message="No foods found!"
-    resetLinkText="Try searching for something else"
-  ></app-not-found>
+            <p class="content__price">
+              {{ food.price | currency }}
+            </p>
+          </section>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+
+
+  <ng-template #noFoods>
+    <app-not-found
+      message="No foods found!"
+      resetLinkText="Try searching for something else"
+    ></app-not-found>
+  </ng-template>
+
 
   <section class="faq">
     <div class="faq__container">

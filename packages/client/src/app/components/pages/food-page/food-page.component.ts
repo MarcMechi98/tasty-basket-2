@@ -1,19 +1,19 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, switchMap, takeUntil, debounceTime } from 'rxjs';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { Subject, switchMap, debounceTime } from 'rxjs';
 
 import { Food } from 'src/app/shared/models/food';
 import { FoodService } from 'src/app/services/food.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-food-page',
   templateUrl: './food-page.component.html',
   styleUrls: ['./food-page.component.scss']
 })
-export class FoodPageComponent implements OnInit, OnDestroy {
-  private readonly unsubscribeAll$: Subject<void> = new Subject<void>();
+export class FoodPageComponent implements OnInit {
   private favoriteFoods: Food[] = [];
   private currentUserId!: string;
   private debounceClick = new Subject();
@@ -24,7 +24,8 @@ export class FoodPageComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private foodService: FoodService,
     private userService: UserService,
-    private cartService: CartService
+    private cartService: CartService,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class FoodPageComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.pipe(
       switchMap(params => this.foodService.getFoodById(params['foodId'])),
-      takeUntil(this.unsubscribeAll$)
+      takeUntilDestroyed(this.destroyRef)
     ).subscribe(food => {
       this.food = food;
 
@@ -48,7 +49,7 @@ export class FoodPageComponent implements OnInit, OnDestroy {
 
     this.debounceClick
     .pipe(
-      takeUntil(this.unsubscribeAll$),
+      takeUntilDestroyed(this.destroyRef),
       debounceTime(300)
     ).subscribe(() => {
       const action = this.food.isFavorite ? 'remove' : 'add';
@@ -56,11 +57,6 @@ export class FoodPageComponent implements OnInit, OnDestroy {
         this.food.isFavorite = !this.food.isFavorite;
       });
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll$.next();
-    this.unsubscribeAll$.complete();
   }
 
   private updateFavoriteProperty(): void {

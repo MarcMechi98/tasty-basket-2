@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit } from '@angular/core';
 import { faCartShopping, faEnvelope, faHeart, faMapMarkerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
@@ -6,17 +6,17 @@ import { User } from '../../../shared/models/user';
 import { Food } from 'src/app/shared/models/food';
 import { Order } from 'src/app/shared/models/order';
 import { Subject, takeUntil } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
-export class ProfilePageComponent implements OnInit, OnDestroy {
+export class ProfilePageComponent implements OnInit {
   public user!: User;
   public favoriteFoods!: Food[];
   public lastOrder!: Order;
-  private readonly unsubscribeAll$: Subject<void> = new Subject<void>();
 
   public faCartShopping = faCartShopping;
   public faHeart = faHeart;
@@ -26,29 +26,23 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit() {
     this.user = this.userService.currentUser;
 
-    this.userService
-      .getFavoritesFromUser$(this.user.id)
-      .pipe(takeUntil(this.unsubscribeAll$))
+    this.userService.getFavoritesFromUser$(this.user.id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((favorites) => {
         this.favoriteFoods = favorites;
       });
 
-    this.orderService
-      .getAllOrdersFromUser$(this.user.id)
-      .pipe(takeUntil(this.unsubscribeAll$))
+    this.orderService.getAllOrdersFromUser$(this.user.id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((orders) => {
         this.lastOrder = orders[0];
       });
-  }
-
-  ngOnDestroy() {
-    this.unsubscribeAll$.next();
-    this.unsubscribeAll$.complete();
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,8 +15,7 @@ import { Order } from 'src/app/shared/models/order';
   templateUrl: './checkout-page.component.html',
   styleUrl: './checkout-page.component.scss'
 })
-export class CheckoutPageComponent implements OnInit, OnDestroy {
-  private readonly unsubscribeAll$ = new Subject<void>();
+export class CheckoutPageComponent implements OnInit {
   public order: Order = new Order();
   public checkoutForm!: FormGroup;
   public nameInputFocused = false;
@@ -27,7 +27,8 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private orderService: OrderService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private destroyRef: DestroyRef
   ) {
     const cart = cartService.getCart();
     this.order.items = cart.items;
@@ -41,11 +42,6 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       name: [name, Validators.required],
       address: [address, Validators.required]
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll$.next();
-    this.unsubscribeAll$.complete();
   }
 
   get nameFormControl(): FormControl {
@@ -71,7 +67,7 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
     this.order.address = this.addressFormControl.value;
 
     this.orderService.create$(this.order)
-    .pipe(takeUntil(this.unsubscribeAll$))
+    .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe({
       next: () => {
         this.router.navigateByUrl('/payment');

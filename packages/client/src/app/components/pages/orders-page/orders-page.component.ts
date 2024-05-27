@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, DestroyRef, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
 import { Order } from 'src/app/shared/models/order';
@@ -9,28 +9,23 @@ import { Order } from 'src/app/shared/models/order';
   templateUrl: './orders-page.component.html',
   styleUrl: './orders-page.component.scss'
 })
-export class OrdersPageComponent implements OnInit, OnDestroy {
-  private readonly unsubscribeAll$ = new Subject<void>();
+export class OrdersPageComponent implements OnInit {
   public organizedOrders: Order[] = [];
 
   constructor(
     private ordersService: OrderService,
-    private userService: UserService
+    private userService: UserService,
+    private destroyRef: DestroyRef
   ) {}
 
   ngOnInit(): void {
     const currentUserId = this.userService.currentUser.id
 
     this.ordersService.getAllOrdersFromUser$(currentUserId)
-    .pipe(takeUntil(this.unsubscribeAll$))
+    .pipe(takeUntilDestroyed(this.destroyRef))
     .subscribe(orders => {
       this.organizedOrders = this.organizeOrdersFromNewestToOldest(orders);
     })
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribeAll$.next();
-    this.unsubscribeAll$.complete();
   }
 
   private organizeOrdersFromNewestToOldest(orders: Order[]): Order[] {
