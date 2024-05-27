@@ -1,6 +1,6 @@
 <div class="food-page">
   <app-not-found
-    [visible]="!food"
+    *ngIf="!food"
     message="Food not found!"
     resetLinkText="Go to home page"
   ></app-not-found>

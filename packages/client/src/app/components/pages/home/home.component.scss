@@ -3,37 +3,36 @@
   --vibrant-red: #e72929;
 }
 
+.hero {
+  padding: 3.5rem 0;
+  background-image: url("../../../../assets/images/hero-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+  background-color: hsl(0, 4%, 80%);
+  background-blend-mode: multiply;
+
+  &__inner-container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.faq {
+  background-color: var(--light-grey);
+  display: block;
+  padding: 4rem 0 5rem 0;
+
+  &__container {
+    margin: 0 auto;
+    max-width: 90%;
+  }
+}
+
 .home {
-
-  .hero {
-    padding: 3.5rem 0;
-    background-image: url("../../../../assets/images/hero-background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top left;
-    background-color: #CECACA;
-    background-blend-mode: multiply;
-
-    &__inner-container {
-      max-width: 90%;
-      margin: 0 auto;
-    }
-  }
-
-  .faq {
-    background-color: var(--light-grey);
-    display: block;
-    padding: 4rem 0 5rem 0;
-
-    &__container {
-      margin: 0 auto;
-      max-width: 90%;
-    }
-  }
-
   &__food-cards {
     margin: 0 auto;
-    width: 90%;
+    max-width: 90%;
     padding: 4rem 0;
     display: grid;
     gap: 2rem;
@@ -58,76 +57,72 @@
       }
     }
   }
+}
 
-  .content {
-    padding: 1rem 1rem .6rem 1rem;
+.content {
+  padding: 1rem 1rem .6rem 1rem;
 
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__food-name {
+    font-weight: 600;
+  }
+
+  &__heart-icon {
+    font-size: 1.2rem;
+    color: grey;
+
+    &--favorite {
+      color: var(--vibrant-red);
     }
+  }
 
-    &__food-name {
-      font-weight: 600;
-    }
+  &__stars-and-time {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
 
-    &__heart-icon {
-      font-size: 1.2rem;
+  &__cooking-time {
+    flex: 3;
+    text-align: end;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: gray;
+  }
+
+  &__origins {
+    flex: 9;
+
+    span {
+      border-radius: 2rem;
       color: grey;
-
-      &--favorite {
-        color: var(--vibrant-red);
-      }
+      background-color: whitesmoke;
+      display: inline-block;
+      font-size: 0.8rem;
+      margin-right: 0.3rem;
+      padding: 0 0.5rem;
+      margin-top: 0.2rem;
     }
+  }
 
-    &__stars-and-time {
-      margin: 0.5rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-    }
-
-    &__cooking-time {
-      flex: 3;
-      text-align: end;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    &__origins {
-      flex: 9;
-
-      span {
-        border-radius: 2rem;
-        color: grey;
-        background-color: whitesmoke;
-        display: inline-block;
-        font-size: 0.8rem;
-        margin-right: 0.3rem;
-        padding: 0 0.5rem;
-        margin-top: 0.2rem;
-      }
-    }
-
-    &__price {
-      color: var(--dark-grey);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-top: .5rem;
-    }
+  &__price {
+    color: var(--dark-grey);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: .5rem;
   }
 }
 
+
 @media only screen and (min-width: 1200px) {
   .home {
-    .content {
-      &__cooking-time {
-        font-size: .7rem;
-      }
-    }
-
     &__card {
       a {
         &:hover {
@@ -141,6 +136,20 @@
           transition: opacity 0.3s ease-in-out;
         }
       }
+    }
+
+    &__food-cards {
+      max-width: 70%;
+
+      &--one {
+        max-width: 30%;
+      }
+    }
+  }
+
+  .content {
+    &__cooking-time {
+      font-size: .8rem;
     }
   }
 }

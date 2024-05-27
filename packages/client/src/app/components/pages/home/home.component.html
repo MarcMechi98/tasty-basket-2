@@ -3,14 +3,10 @@
     <div class="hero__inner-container">
       <app-search-bar></app-search-bar>
       <app-tags></app-tags>
-      <app-not-found
-        [visible]="!foods || !foods.length"
-        message="No foods found!"
-        resetLinkText="Try searching for something else"
-      ></app-not-found>
+
     </div>
   </section>
-  <ul *ngIf="foods && foods.length" class="home__food-cards">
+  <ul *ngIf="foods.length" class="home__food-cards" [class.home__food-cards--one]="foods.length === 1">
     <li *ngFor="let food of foods" class="home__card">
       <a routerLink="/food/{{ food.id }}">
         <img [src]="food.imageUrl" [alt]="food.name" />
@@ -46,6 +42,12 @@
       </a>
     </li>
   </ul>
+
+  <app-not-found
+    *ngIf="!foods.length"
+    message="No foods found!"
+    resetLinkText="Try searching for something else"
+  ></app-not-found>
 
   <section class="faq">
     <div class="faq__container">

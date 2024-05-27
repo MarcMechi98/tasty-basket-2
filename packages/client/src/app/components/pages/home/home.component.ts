@@ -32,7 +32,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     const currentUserId = this.userService.currentUser.id;
 
     if (currentUserId) {
-      this.userService.getFavoritesFromUser$(currentUserId).subscribe(favorites => {
+      this.userService.getFavoritesFromUser$(currentUserId)
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(favorites => {
         this.favoriteFoods = favorites;
         this.updateFavoriteProperty();
       });
@@ -51,7 +53,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       })
     )
 
-    this.foods$.subscribe(foods => {
+    this.foods$
+    .pipe(takeUntil(this.unsubscribeAll))
+    .subscribe(foods => {
       this.foods = foods;
       this.updateFavoriteProperty();
     });
