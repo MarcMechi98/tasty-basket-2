@@ -1,37 +1,29 @@
 # Tasty Basket 🛒🍔🥗
+Tasty Basket is a full-stack food e-commerce application that I've created from scratch using Angular 16 and SASS for the frontend, and Node.js with MongoDB and Mongoose for the backend. It has several unit tests written in Jasmine in the client side. It includes features such as:
+- Home page with several food items
+- Food details page
+- Cart page
+- Checkout page
+- Payment page (using the Paypal SDK)
+- Order details page
+- All orders page
+- Profile page
+- Login and registration pages
 
-
-
-**To simulate payment through Paypal, please use the following login credentials:**
-- Login email: sb-7p6yv29176224@personal.example.com
-- Password: FG5sc$Fe
-
-## 1. Installation
+## Installation
+### 1. Clone the project
 ```bash
-   git clone https://github.com/your-username/tasty-basket.git
-   cd tasty-basket
+   git clone https://github.com/MarcMechi98/tasty-basket-2.git
+   cd tasty-basket-2
 ```
-
-## Development server
-
+### 2. Install client and server dependencies
+From the root of the project:
+```bash
+   npm run install-all
+```
+### 3. Run the project locally
 Run `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Login info for making payments through Paypal
+- Login email: sb-7p6yv29176224@personal.example.com
+- Password: FG5sc$Fe
